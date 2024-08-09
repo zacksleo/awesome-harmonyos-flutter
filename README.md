@@ -25,6 +25,7 @@ export PATH=$TOOL_HOME/tools/node/bin:$PATH # command-line-tools/tool/node/bin
 
 
 FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+
 PUB_HOSTED_URL=https://pub.flutter-io.cn
 
 DEVECO_SDK_HOME=C:\Program Files\Huawei\DevEco Studio\sdk
@@ -35,5 +36,7 @@ DEVECO_SDK_HOME=C:\Program Files\Huawei\DevEco Studio\sdk
 编辑 PATH，添加以下路径
 
 C:\Program Files\Huawei\DevEco Studio\tools\ohpm\bin
+
 C:\Program Files\Huawei\DevEco Studio\tools\hvigor\bin
+
 C:\Program Files\Huawei\DevEco Studio\tools\node
