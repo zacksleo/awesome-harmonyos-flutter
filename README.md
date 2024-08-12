@@ -2,9 +2,9 @@
 
 ## 准备工作
 
-1.安装[IDE](https://developer.huawei.com/consumer/cn/deveco-studio/)
+1.安装 [DevEco Studio NEXT IDE](https://developer.huawei.com/consumer/cn/deveco-studio/), 注意版本应该是 Next，当前最新的是 Beta3
 
-2.安装Git, 如果要同时适配安卓,需要安装Android Studio; 如果要适配ios,需要安装Xcode 
+2.安装Git, 如果要同时适配安卓,需要安装Android Studio; 如果要适配ios,需要安装Xcode
 
 
 ## Mac 安装(推荐)
@@ -26,10 +26,8 @@ export PATH=$TOOL_HOME/tools/node/bin:$PATH # command-line-tools/tool/node/bin
 
 ## Windows 安装
 
-
-配置用户变量
-
-
+### 配置用户变量
+```
 FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
 PUB_HOSTED_URL=https://pub.flutter-io.cn
@@ -37,18 +35,18 @@ PUB_HOSTED_URL=https://pub.flutter-io.cn
 DEVECO_SDK_HOME=C:\Program Files\Huawei\DevEco Studio\sdk
 
 JAVA_HOME=C:\Program Files\Huawei\DevEco Studio\jbr
+```
 
-
-配置环境变量
+### 配置环境变量
 
 编辑 PATH，添加以下路径
-
+```
 C:\Program Files\Huawei\DevEco Studio\tools\ohpm\bin
 
 C:\Program Files\Huawei\DevEco Studio\tools\hvigor\bin
 
 C:\Program Files\Huawei\DevEco Studio\tools\node
-
+```
 ## 管理多个 Flutter 版本
 
 如果在项目开发中，需要使用多个 Flutter 版本，可以考虑使用 fvm
