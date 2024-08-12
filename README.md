@@ -41,6 +41,30 @@ C:\Program Files\Huawei\DevEco Studio\tools\hvigor\bin
 
 C:\Program Files\Huawei\DevEco Studio\tools\node
 
+## 管理多个 Flutter 版本
+
+如果在项目开发中，需要使用多个 Flutter 版本，可以考虑使用 fvm
+
+1. 安装 [FVM](https://fvm.app/)
+2. 使用 fvm 官方 flutter 版本
+
+```
+fvm install 3.22.0
+```
+3. 安装自定义鸿蒙版本，进入 fvm/version 目录，通常位于用户目录下，如 `~/fvm/versions/3.22.0`,
+拷贝仓库并重命名为 `custom_x.x.x`的名字
+
+```
+git clone -b dev https://gitee.com/openharmony-sig/flutter_flutter.git custom_3.7.12
+```
+
+4. 在项目中使用单独的 flutter sdk 版本, 在项目目录中执行：
+
+```
+fvm use custom_3.7.12
+```
+
+
 ## 常见问题
 
 1. 运行 flutter doctor 出现 `Error: Unable to find git in your PATH.`
