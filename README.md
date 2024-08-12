@@ -40,3 +40,14 @@ C:\Program Files\Huawei\DevEco Studio\tools\ohpm\bin
 C:\Program Files\Huawei\DevEco Studio\tools\hvigor\bin
 
 C:\Program Files\Huawei\DevEco Studio\tools\node
+
+## 常见问题
+
+1. 运行 flutter doctor 出现 `Error: Unable to find git in your PATH.`
+
+执行以下命令
+
+
+```
+git config --global --add safe.directory '*'
+```
