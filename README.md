@@ -3,6 +3,7 @@
 ## 准备工作
 
 1.安装[IDE](https://developer.huawei.com/consumer/cn/deveco-studio/)
+
 2.安装Git, 如果要同时兼容安卓,需要安装Android Studio; 如果要兼容ios,需要安装Xcode 
 
 
