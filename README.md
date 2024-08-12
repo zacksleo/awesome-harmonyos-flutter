@@ -4,7 +4,7 @@
 
 1.安装[IDE](https://developer.huawei.com/consumer/cn/deveco-studio/)
 
-2.安装Git, 如果要同时兼容安卓,需要安装Android Studio; 如果要兼容ios,需要安装Xcode 
+2.安装Git, 如果要同时适配安卓,需要安装Android Studio; 如果要适配ios,需要安装Xcode 
 
 
 ## Mac 安装(推荐)
@@ -83,3 +83,8 @@ fvm use custom_3.7.12
 ```
 git config --global --add safe.directory '*'
 ```
+
+## 参考资料
+
+- [Flutter中文文档](https://docs.flutter.cn/)
+- [Harmonyos Next 开发文档](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/application-dev-guide-V5)
