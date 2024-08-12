@@ -1,7 +1,12 @@
-# awesome-harmonyos-flutter
+# flutter 鸿蒙适配指南
+
+## 准备工作
+
+1.安装[IDE](https://developer.huawei.com/consumer/cn/deveco-studio/)
+2.安装Git, 如果要同时兼容安卓,需要安装Android Studio; 如果要兼容ios,需要安装Xcode 
 
 
-## Mac 安装
+## Mac 安装(推荐)
 
 环境变量配置
 
@@ -30,6 +35,8 @@ PUB_HOSTED_URL=https://pub.flutter-io.cn
 
 DEVECO_SDK_HOME=C:\Program Files\Huawei\DevEco Studio\sdk
 
+JAVA_HOME=C:\Program Files\Huawei\DevEco Studio\jbr
+
 
 配置环境变量
 
@@ -52,7 +59,7 @@ C:\Program Files\Huawei\DevEco Studio\tools\node
 fvm install 3.22.0
 ```
 3. 安装自定义鸿蒙版本，进入 fvm/version 目录，通常位于用户目录下，如 `~/fvm/versions/3.22.0`,
-拷贝仓库并重命名为 `custom_x.x.x`的名字
+拷贝仓库并重命名为 `custom_x.y.z`的名字
 
 ```
 git clone -b dev https://gitee.com/openharmony-sig/flutter_flutter.git custom_3.7.12
