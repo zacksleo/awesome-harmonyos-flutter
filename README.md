@@ -82,6 +82,20 @@ fvm use custom_3.7.12
 git config --global --add safe.directory '*'
 ```
 
+## Flutter 鸿蒙交流群
+
+【flutter鸿蒙技术交流群】
+
+目前 Flutter 鸿蒙已经跑通，但仍然存在一些潜在的坑需要解决和处理，欢迎大家一起分享交流
+
+请加扫码加小助手进群：
+备注：鸿蒙Flutter
+wx：zacksleo
+
+![alt text](image.png)
+`
+
+
 ## 参考资料
 
 - [Flutter中文文档](https://docs.flutter.cn/)
