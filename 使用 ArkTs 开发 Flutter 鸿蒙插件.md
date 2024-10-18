@@ -86,7 +86,7 @@ export default class ForestPlugin implements FlutterPlugin {
   private dataPreferences: preferences.Preferences | null = null;
 
   onAttachedToEngine(binding: FlutterPluginBinding): void {
-    this.channel = new MethodChannel(binding.getBinaryMessenger(), "nicestwood.com/forest");
+    this.channel = new MethodChannel(binding.getBinaryMessenger(), "xxx.com/app");
     this.channel.setMethodCallHandler({
       onMethodCall : (call: MethodCall, result: MethodResult) => {
         console.log(`${TAG}-->[${call.method}]: ${JSON.stringify(call.args)}`);
@@ -159,6 +159,13 @@ class ForestApi {
 }
 
 ```
+
+## 注意事项
+
+1.双端初始化methodChannel中的名称必须保持一致，如 `xxx.com/app`.
+2.arkTS侧通过 result.success(val) 返回数据，该过程是异步的，故在 Dart 侧需要使用 await 或者回调函数取值。
+3.通信中默认只支持基础的[数据类型](https://docs.flutter.cn/platform-integration/platform-channels/#codec)，复杂类型的需要进行序列化或编解码。
+4.在Dart 侧接收的数据为 dymanic 类型，需要进行数据类型转换。
 
 ## 参考资料
 
