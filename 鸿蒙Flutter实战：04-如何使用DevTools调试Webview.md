@@ -1,4 +1,4 @@
-# 鸿蒙 Flutter 如何使用 DevTools 调度 Webview
+# 鸿蒙 Flutter 如何使用 DevTools 调试 Webview
 
 在《鸿蒙 Flutter 开发中集成 Webview》，介绍了如果在 Flutter 中集成 Webview. 本文则为 Webview 的调试方法。
 
@@ -39,13 +39,15 @@ hdc fport tcp:9222 localabstract:webview_devtools_remote_43406
 # Forwardport result:OK
 ```
 
-## 在 Chrome 中找打 Webview 并开始调度
+## 在 Chrome 中找打 Webview 并开始调试
 
 在 Chrome 中打开 `chrome://inspect/#devices`页面，观察页面中RemoteTarget 处出现了相关页面
 
 选择需要调度的页面，点击 **inspect**，弹出 DevTools 窗口，开启页面调度
 
 ![devtools](./devtools.png)
+
+<!-- ![devtools](https://ximgs.oss-cn-hangzhou.aliyuncs.com/harmonyos-flutter-in-action/devtools.png) -->
 
 ## 其他
 
