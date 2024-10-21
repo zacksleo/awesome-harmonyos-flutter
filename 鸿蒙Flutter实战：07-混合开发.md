@@ -16,3 +16,5 @@
 
 ## 参考资料
 
+- [撰写双端平台代码（插件编写实现）](https://docs.flutter.cn/platform-integration/platform-channels/)
+- [鸿蒙Flutter功能开发](https://gitee.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/README.md)
