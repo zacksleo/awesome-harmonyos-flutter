@@ -6,9 +6,28 @@
 
 ## 2.配置
 
+如果是 vscode, 可以在 .vscode/launch.json 文件中，增加以下配置
 
+```json
+   {
+      "name": "ohos-app (attach mode)",
+      "cwd": "packages/apps/ohos_app",
+      "request": "attach",
+      "type": "dart",
+    },
+    {
+      "name": "ohos_app",
+      "cwd": "packages/apps/ohos_app",
+      "request": "launch",
+      "type": "dart"
+    },
+```
+
+添加成功后，会在运行和调度的 Tab 栏目中，出现启动的选项。这里添加了两个配置，一个是 Attach 模式，一个是普通的运行模式。
 
 ## 3.查看日志
+
+查看日志，可以在运行Flutter处的IDE调试控制台查看 Flutter 项目日志，可以使用 `hdc hilog` 命令或DevEco 查看系统日志。
 
 ## 4.调试 Flutter
 
