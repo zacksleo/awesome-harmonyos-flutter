@@ -35,6 +35,14 @@ C:\Program Files\Huawei\DevEco Studio\tools\node
 
 SDK 下载完成，环境变量配置妥当后，使用 flutter doctor 检查各项是否通过。
 
+在命令行中，运行 ohpm -v, hvigor -v, node -v 查看输出是否正常，确保各个依赖的工具，其 PATH 配置正确。
+
+使用 `echo %DEVECO_SDK_HOME%`, `echo %JAVA_HOME%` 等检查用户变量是否生效。
+
+环境变量发生变化时，需要重启命令行工具。
+
+另外，需要注意的是，优先添加用户环境变量，如果是系统环境变量，可能需要注销登录或者重启系统，否则配置可能不生效。
+
 ### 2. 为了避免意外情况，将新建项目位置，于SDK使用相同的磁盘，如D盘。
 
 否则可能出现package找不到的情况。
