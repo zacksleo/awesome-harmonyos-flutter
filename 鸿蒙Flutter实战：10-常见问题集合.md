@@ -59,4 +59,4 @@
 
 ## 参考资料
 
-[Flutter SDK 仓库-常见问题](https://gitee.com/openharmony-sig/flutter_flutter#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
+- [Flutter SDK 仓库-常见问题](https://gitee.com/openharmony-sig/flutter_flutter#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
