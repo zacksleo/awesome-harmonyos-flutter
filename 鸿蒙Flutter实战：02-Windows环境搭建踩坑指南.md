@@ -4,7 +4,7 @@
 
 ### 1. 下载Flutter SDK，配置环境变量
 
- 鸿蒙 Flutter SDK 需要在 [Gitee 下载](https://gitee.com/openharmony-sig/flutter_flutter)
+ 鸿蒙 Flutter SDK 需要在 [Gitee 下载](https://gitee.com/openharmony-sig/flutter_flutter)。目前建议下载 dev 分支代码。
 
 #### 需要配置以下用户变量
 
@@ -33,7 +33,13 @@ C:\Program Files\Huawei\DevEco Studio\tools\hvigor\bin
 C:\Program Files\Huawei\DevEco Studio\tools\node
 ```
 
+SDK 下载完成，环境变量配置妥当后，使用 flutter doctor 检查各项是否通过。
+
 ### 2. 为了避免意外情况，将新建项目位置，于SDK使用相同的磁盘，如D盘。
 
 否则可能出现package找不到的情况。
 
+另外，项目目录不要过深入，不然会因路径太长导致编译可能失败。
+
+
+###
