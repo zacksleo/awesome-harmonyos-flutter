@@ -184,3 +184,5 @@ dependency_overrides:
 ## 编译运行
 
 运行 Flutter 项目，查看相关日志和运行界面，针对出现的问题再单独处理。
+
+查看日志，可以在运行Flutter处的IDE调试控制台查看 Flutter 项目日志，可以使用 `hdc hilog` 命令或DevEco 查看系统日志。
