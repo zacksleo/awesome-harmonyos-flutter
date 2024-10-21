@@ -40,6 +40,22 @@
 运行 flutter run -d $DEVICE --debug
 ```
 
+## 如何更换 App 图标和名称
+
+找到 ohos/AppScope/resources/base/media/app_icon.png，替换相应的文件
+
+找到 ohos/AppScope/resources/base/element/string.json 文件，修改以下配置
+
+```json
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "中文名称"
+    }
+  ]
+}
+```
 
 ## 参考资料
 
