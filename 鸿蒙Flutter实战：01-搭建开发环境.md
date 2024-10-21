@@ -58,8 +58,8 @@ C:\Program Files\Huawei\DevEco Studio\tools\node
 
 ```bash
 fvm install 3.22.0
+```
 
-```bash
 3. 安装自定义鸿蒙版本，进入 fvm/version 目录，通常位于用户目录下，如 `~/fvm/versions/3.22.0`,
 拷贝仓库并重命名为 `custom_x.y.z`的名字
 
