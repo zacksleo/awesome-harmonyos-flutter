@@ -18,3 +18,4 @@
 
 - [撰写双端平台代码（插件编写实现）](https://docs.flutter.cn/platform-integration/platform-channels/)
 - [鸿蒙Flutter功能开发](https://gitee.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/README.md)
+- [鸿蒙add-to-app示例](https://github.com/0xZOne/ohos-flutter-add2app)
