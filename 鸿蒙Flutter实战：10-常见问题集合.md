@@ -40,7 +40,7 @@
 运行 flutter run -d $DEVICE --debug
 ```
 
-## 如何更换 App 图标和名称
+## 5. 如何更换 App 图标和名称
 
 找到 ohos/AppScope/resources/base/media/app_icon.png，替换相应的文件
 
@@ -56,6 +56,22 @@
   ]
 }
 ```
+
+## 6. flutter run 运行 App 报错，提示命令找不到
+
+```bash
+Launching lib/main.dart on 127.0.0.1:5555
+start hap build..-e ERROR: node: /Applications/DevEco-Studio.app/Contents/tools/ohpm/bin/ohpm: line 7: node: commandnot found
+-e ERROR: NODE_HOME: /Applications/DevEco-Studio.app/Contents/tools/ohpm/bin/ohpm: line 11: /node:
+o such file or directory
+-e ERROR: NODE_HOME: /Applications/DevEco-Studio.app/Contents/tools/ohpm/bin/ohpm: line 25: /bin/noc
+e: No such file or directory
+-e ERROR: Failed to find the executable 'node’ command, please check the following possible causes:e1. Node]s is not installed.e2.'node'command not added to PATH;
+eand the 'NoDE HOME' variable is not set in the environment variables to match your NodeJsinstallation location.
+ProcessException: The command failedCommand: ohpm clean
+```
+
+检查环境变量配置，配置成功后，检查是否已生效。通过 `source ~/.zshrc` 或重启命令行程序，甚至重启 IDE/系统，直至变量生效。
 
 ## 参考资料
 
