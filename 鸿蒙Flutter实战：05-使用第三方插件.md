@@ -2,7 +2,7 @@
 
 在鸿蒙Flutter开发中，如果涉及到使用原生功能，就要使用插件。使用插件有两种方式，一种是自己编写原生ArkTS代码，在Dart侧调用。另外一种是使用第三方代码。
 
-方式一：编号原生 ArkTS 代码
+## 方式一：编号原生 ArkTS 代码
 
 该方案可以使用 PlatformView 或者 MethodChannel 调用。
 
@@ -12,7 +12,7 @@
 
 具体操作可以分别参考文章 [鸿蒙 Flutter 开发中集成 Webview](https://gitee.com/zacks/awesome-harmonyos-flutter/blob/master/%E9%B8%BF%E8%92%99Flutter%E5%AE%9E%E6%88%98%EF%BC%9A03-%E9%B8%BF%E8%92%99Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E9%9B%86%E6%88%90Webview.md) 和 [使用 ArkTs 开发 Flutter 鸿蒙平台插件](https://gitee.com/zacks/awesome-harmonyos-flutter/blob/master/%E9%B8%BF%E8%92%99Flutter%E5%AE%9E%E6%88%98%EF%BC%9A06-%E4%BD%BF%E7%94%A8ArkTs%E5%BC%80%E5%8F%91Flutter%E9%B8%BF%E8%92%99%E6%8F%92%E4%BB%B6.md)
 
-方式二：使用第三方代码
+## 方式二：使用第三方代码
 
 1.在pub.flutter.dev/github/gitee/ophm查找使用的插件，如果插件已经适配鸿蒙，则可以像其他Flutter插件一样正常使用。
 
