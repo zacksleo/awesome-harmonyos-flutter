@@ -12,6 +12,8 @@
 
 具体操作可以分别参考文章 [鸿蒙 Flutter 开发中集成 Webview](https://gitee.com/zacks/awesome-harmonyos-flutter/blob/master/%E9%B8%BF%E8%92%99Flutter%E5%AE%9E%E6%88%98%EF%BC%9A03-%E9%B8%BF%E8%92%99Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E9%9B%86%E6%88%90Webview.md) 和 [使用 ArkTs 开发 Flutter 鸿蒙平台插件](https://gitee.com/zacks/awesome-harmonyos-flutter/blob/master/%E9%B8%BF%E8%92%99Flutter%E5%AE%9E%E6%88%98%EF%BC%9A06-%E4%BD%BF%E7%94%A8ArkTs%E5%BC%80%E5%8F%91Flutter%E9%B8%BF%E8%92%99%E6%8F%92%E4%BB%B6.md)
 
+方式二：使用第三方代码
+
 1.在pub.flutter.dev/github/gitee/ophm查找使用的插件，如果插件已经适配鸿蒙，则可以像其他Flutter插件一样正常使用。
 
 2.如果插件尚未适配鸿蒙，则需要寻找适配的插件库。配置方法如下
