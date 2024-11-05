@@ -184,7 +184,8 @@ Taro 会将编译好的文件输出至鸿蒙项目目录
 
 ## 注意事项
 
-运动 Taro 时报错 `throw new Error(`不存在编译平台 ${platform}`)`，config/index.ts文件中没有添加 `@tarojs/plugin-platform-harmony-ets`
+1. 运行 Taro 时报错 `throw new Error(`不存在编译平台 ${platform}`)`，config/index.ts文件中没有添加 `@tarojs/plugin-platform-harmony-ets`
+2. 当前开发方式不支持 Hot reload
 
 ## 参考资料
 
