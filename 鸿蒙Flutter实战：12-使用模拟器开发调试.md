@@ -60,7 +60,7 @@ Vscode中右下角应当出现模拟器的设备，行如 `127.0.0.1:5555(ohos-a
 
 ## 注意事项
 
-1. Flutter 运行 App，打包安装成功， 运行闪退 从以下方面检查：
+### 1. Flutter 运行 App，打包安装成功， 运行闪退 从以下方面检查：
 
 1.1 如果是 X86电脑架构的模拟器，尝试删除 main.dart 中的 FloatingActionButton
 1.2 如果 Flutter SDK 使用的 ohos-3.22, 尝试关闭 `impeller` 渲染方式，打开或创建文件 `ohos/entry/src/main/resources/rawfile/buildinfo.json5`, 增加以下配置
@@ -74,14 +74,14 @@ Vscode中右下角应当出现模拟器的设备，行如 `127.0.0.1:5555(ohos-a
       }
    ]
 }
+```
 
-2.  VSCode 中模拟器设备不显示
+### 2.VSCode 中模拟器设备不显示
 
 2.1 尝试使用 Deveco 打开项目的 ohos 目录（即鸿蒙项目文件），等待初始化分析成功
 2.2 尝试重启 VSCode
 
-
-3. 使用 fvm 时，项目目录下 flutter --version 显示不正确，不是 ohos 版本
+3.使用 fvm 时，项目目录下 flutter --version 显示不正确，不是 ohos 版本
 
 以次按以下的方式进行逐个尝试，直至成功。
 
