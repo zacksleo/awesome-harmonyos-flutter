@@ -73,6 +73,10 @@ ProcessException: The command failedCommand: ohpm clean
 
 检查环境变量配置，配置成功后，检查是否已生效。通过 `source ~/.zshrc` 或重启命令行程序，甚至重启 IDE/系统，直至变量生效。
 
+## 7.是否可以使用 Flutter 开发元服务
+
+目前不行，元服务大小有限制 （2M），Flutter 构建产物过大，不符合这一要求
+
 ## 参考资料
 
 - [Flutter SDK 仓库-常见问题](https://gitee.com/openharmony-sig/flutter_flutter#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
