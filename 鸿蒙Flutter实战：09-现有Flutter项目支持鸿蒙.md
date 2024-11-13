@@ -60,7 +60,7 @@
 
 3. common 里面是领域对象，小组件，服务类，扩展等，平台无关，里面均为纯 Dart 代码。
 
-4. apps 是应用外套，通过组合不同的模块，向不同的平台打包。
+4. apps 是应用外壳，通过组合不同的模块，向不同的平台打包。
 
 5. 使用 melos 管理多包仓库。
 
@@ -68,7 +68,9 @@
 
 在apps目录下新建鸿蒙项目，先把壳项目在鸿蒙中跑起来，确保没有问题。依次再添加依赖项，首先添加纯dart编写的包，再添加依赖于原生代码/插件的包。注意挨个添加依赖，不要一次添加太多依赖，方便排查定位问题，
 
-解决版本依赖问题，鸿蒙Flutter项目目前需要依赖于3.7版本，如果原项目使用了更低的版本，则可将原项目SDK依赖升级至3.7；如果原项目SDK版本高于3.7，则有两种方案：一种是降级原项目SDK依赖为3.7；另外一种是使用多分支方案。
+解决版本依赖问题，鸿蒙 Flutter 项目目前需要依赖于3.7版本，如果原项目使用了更低的版本，则可将原项目SDK依赖升级至3.7；如果原项目SDK版本高于3.7，则有两种方案：一种是降级原项目SDK依赖为3.7；另外一种是使用多分支方案。
+
+如果需要使用 Flutter 3.22 版本，参见文章 [鸿蒙Flutter实战：11-使用 Flutter SDK 3.22.0](./鸿蒙Flutter实战：11-使用%20Flutter%20SDK%203.22.0.md)
 
 ## 特定平台工程
 
@@ -148,27 +150,36 @@ dependencies:
   # 领域对象
   domains:
     path: '../../common/domains'
+  # 通用服务类
   services:
     path: '../../common/services'
+  # 纯 Dart UI 组件
   widgets:
     path: '../../common/widgets'
+  # 模块: 收货地址
   address:
     path: '../../modules/address'
+  # 模块: 帮助中心
   support:
     path: '../../modules/support'
+  # 模块：个人中心
   me:
     path: '../../modules/me'
+  # 模块：消息通知
   message:
     path: '../../modules/message'
+  # 模块：订单
   order:
     path: '../../modules/order'
+  # 模块：商城
   shop:
     path: '../../modules/shop'
+  # 模块：首页
   home:
     path: '../../modules/home'
 ```
 
-### 配置对特定插件进行鸿蒙化适配
+### 插件鸿蒙化适配
 
 部分第三方插件以及插件依赖的其他库，如果没有适配鸿蒙，则可以通过 override配置鸿蒙化的版本
 
@@ -185,4 +196,4 @@ dependency_overrides:
 
 运行 Flutter 项目，查看相关日志和运行界面，针对出现的问题再单独处理。
 
-查看日志，可以在运行Flutter处的IDE调试控制台查看 Flutter 项目日志，可以使用 `hdc hilog` 命令或DevEco 查看系统日志。
+查看日志，可以在运行 Flutter 处的 IDE 调试控制台查看 Flutter 项目日志，可以使用 `hdc hilog` 命令或 DevEco 查看系统日志。
