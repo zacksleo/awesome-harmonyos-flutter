@@ -9,7 +9,7 @@
 使用 FVM 进入 目录 `~/fvm/versions/`, 克隆以上仓库。
 
 ```bash
-git clone https://gitee.com/openharmony-sig/flutter_flutter.git custom_3.22.0
+git clone https://gitee.com/harmonycommando_flutter/flutter.git custom_3.22.0
 ```
 
 接下来使用 `fvm list` 命令查看 SDK版本 列表。
