@@ -2,7 +2,7 @@
 
 在鸿蒙Flutter开发中，如果涉及到使用原生功能，就要使用插件。使用插件有两种方式，一种是自己编写原生ArkTS代码，在Dart侧调用。另外一种是使用第三方代码。
 
-## 方式一：编号原生 ArkTS 代码
+## 方式一：编写原生 ArkTS 代码
 
 该方案可以使用 PlatformView 或者 MethodChannel 调用。
 
