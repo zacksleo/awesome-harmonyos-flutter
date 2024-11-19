@@ -13,6 +13,15 @@
       path: "flutter_inappwebview"
 ```
 
+或者使用 webview_flutter 插件
+
+```yaml
+  webview_flutter:
+    git:
+      url: https://gitee.com/openharmony-sig/flutter_packages.git
+      path: "packages/webview_flutter/webview_flutter"
+```
+
 ### 编写原生 ArkTS 代码实现 PlatformView
 
 创建 entryablitiy
