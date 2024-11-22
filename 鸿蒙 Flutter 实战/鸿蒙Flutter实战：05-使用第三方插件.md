@@ -21,6 +21,9 @@
 3.如果使用的第三方插件，其底层以的库没有适配鸿蒙，则需要通过overrider配置其鸿蒙化的替代插件，否则会在运行时报错。如下面所示：
 
 ```yaml
+dependencies:
+  path_provider: ^2.1.0
+
 dependency_overrides:
   # ohos
   path_provider:
