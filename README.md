@@ -15,6 +15,7 @@
 - [鸿蒙Flutter实战：11-使用 Flutter SDK 3.22.0](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：11-使用%20Flutter%20SDK%203.22.0.md)
 - [鸿蒙Flutter实战：12-使用模拟器开发调试](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：12-使用模拟器开发调试.md)
 - [鸿蒙Flutter实战：13-鸿蒙应用打包上架流程](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：13-鸿蒙应用打包上架流程.md)
+- [鸿蒙Flutter实战：14-现有Flutter 项目支持鸿蒙 II](https://gitee.com/zacks/flutter-ohos-demo)
 
 ## 《鸿蒙 Taro 实战》
 
