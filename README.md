@@ -34,4 +34,4 @@
 
 > HarmonyOS Flutter 开发
 
-<img src="./qrcode.png" width="200">
+<img src="./qrcode.png" width="300">
