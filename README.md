@@ -34,6 +34,6 @@
 
 > HarmonyOS Flutter 开发
 
-`关注公众号，加入交流群。`
-
 <img src="./qrcode.png" width="300">
+
+`关注公众号，加入交流群。`
