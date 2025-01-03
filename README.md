@@ -16,6 +16,8 @@
 - [鸿蒙Flutter实战：12-使用模拟器开发调试](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：12-使用模拟器开发调试.md)
 - [鸿蒙Flutter实战：13-鸿蒙应用打包上架流程](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：13-鸿蒙应用打包上架流程.md)
 - [鸿蒙Flutter实战：14-现有Flutter 项目支持鸿蒙 II](https://gitee.com/zacks/flutter-ohos-demo)
+- [鸿蒙Flutter实战：15-Flutter引擎Impeller鸿蒙化、性能优化与未来](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：15-Flutter引擎Impeller鸿蒙化、性能优化与未来.md)
+- [鸿蒙Flutter实战：16-无痛开发指南（适合新手）](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：16-无痛开发指南（适合新手）.md)
 
 ## 《鸿蒙 Taro 实战》
 
