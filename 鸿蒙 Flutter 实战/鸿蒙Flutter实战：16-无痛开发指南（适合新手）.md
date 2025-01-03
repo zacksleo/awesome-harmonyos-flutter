@@ -98,3 +98,11 @@ flutter run -d FMR0224904009635
 
 ![alt text](image-18.png)
 
+## 参考资料
+
+- [鸿蒙Flutter实战：01-搭建开发环境](./鸿蒙Flutter实战：01-搭建开发环境.md)
+- [鸿蒙Flutter实战：02-Windows环境搭建踩坑指南](./鸿蒙Flutter实战：02-Windows环境搭建踩坑指南.md)
+- [鸿蒙Flutter实战：11-使用FlutterSDK3.22.0](./鸿蒙Flutter实战：11-使用 Flutter SDK 3.22.0.md)
+- [鸿蒙Flutter实战：12-使用模拟器开发调试](./鸿蒙Flutter实战：12-使用模拟器开发调试.md)
+- [鸿蒙Flutter实战：13-鸿蒙应用打包上架流程](./鸿蒙Flutter实战：13-鸿蒙应用打包上架流程.md)
+- [鸿蒙Flutter实战：14-现有Flutter项目支持鸿蒙II](./鸿蒙Flutter实战：14-现有 Flutter 项目支持鸿蒙 II.md)
