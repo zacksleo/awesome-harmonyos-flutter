@@ -6,6 +6,14 @@ Flutter Web
 通过分析，wasmgc和skia需要加载较大的引擎包，很难优化，故选择html引擎
 2.体积裁剪，通过bulid apk shaking icon，得到一个裁剪后的字体库，替换调flutter web打包的对应字体产物
 
+## 字体图标裁剪
+
+
+先在app项目构建 apk： flutter build apk --tree-shake-icons
+
+找到 build/host/intermediates/assets/release/mergeReleaseAssets/flutter_assets/fonts/MaterialIcons-Regular.otf
+将该文档复制到 web/fonts/ 文件夹
+
 3.使用延迟加载拆分文件，当前页面不需要的使用的代码延迟加载
 
 4.增加过渡动画，在资源加载过程中使用一个加载动画，优化用户体验。
@@ -17,4 +25,7 @@ Flutter Web
 进阶
 
 
+## 参考资料
+
+- [How to Optimize Flutter Web and How Flutter Web work in Html Renderer](https://medium.com/@GSYTech/how-to-optimize-flutter-web-and-how-flutter-web-work-in-html-renderer-b399ffd66718)
 
