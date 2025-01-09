@@ -43,30 +43,30 @@ wx.miniProgram.getEnv
 服务端的代码类似如下实现：
 
 ```java
-    // 定义跳转接口
-    @GetMapping("/app/redirect")
-    public ResponseEntity<Void> redirectToTargetPage(
-            @RequestParam("accessToken") String accessToken,
-            @RequestParam("to") String targetUrl,
-            HttpServletResponse response) throws IOException {
+// 定义跳转接口
+@GetMapping("/app/redirect")
+public ResponseEntity<Void> redirectToTargetPage(
+    @RequestParam("accessToken") String accessToken,
+    @RequestParam("to") String targetUrl,
+    HttpServletResponse response) throws IOException {
 
-        // 创建 Cookie 并设置值
-        Cookie accessTokenCookie = new Cookie("accessToken", accessToken);
-        accessTokenCookie.setPath("/");  // 设置 Cookie 的路径，保证整个站点有效
-        accessTokenCookie.setHttpOnly(true);  // 设置为 HttpOnly 防止 JavaScript 访问
-        accessTokenCookie.setSecure(true);  // 在生产环境中使用 HTTPS 时，设置为 Secure
-        accessTokenCookie.setMaxAge(3600);  // 设置 Cookie 的过期时间，单位是秒，这里设置为 1小时
+    // 创建 Cookie 并设置值
+    Cookie accessTokenCookie = new Cookie("accessToken", accessToken);
+    // 设置 Cookie 的路径，保证整个站点有效
+    accessTokenCookie.setPath("/");
+    // 设置 Cookie 的过期时间，单位是秒，这里设置为 1小时
+    accessTokenCookie.setMaxAge(3600);
 
-        // 将 Cookie 添加到响应中
-        response.addCookie(accessTokenCookie);
+    // 将 Cookie 添加到响应中
+    response.addCookie(accessTokenCookie);
 
-        // 设置 301 临时重定向
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", targetUrl);
+    // 设置 301 临时重定向
+    HttpHeaders headers = new HttpHeaders();
+    headers.add("Location", targetUrl);
 
-        // 返回 301 状态码和 Location 头部，触发客户端重定向
-        return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
-    }
+    // 返回 301 状态码和 Location 头部，触发客户端重定向
+    return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
+}
 ```
 
 > 这里需要注意的是，接口域名必须和跳转页面的域名一致，否则无法共享 Cookie。
@@ -74,4 +74,5 @@ wx.miniProgram.getEnv
 
 ## 参考资料
 
+- [JS-SDK说明文档](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html)
 - [web-view](https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html)

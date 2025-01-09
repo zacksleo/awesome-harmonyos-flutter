@@ -1,6 +1,8 @@
-微信的 JS-SDK 提供了很多调用微信能力的API，H5 页面也经常用到。本文以文件上传为为例，介绍了如何在Flutter Web项目集成微信 JS-SDK。
+>微信的 JS-SDK 提供了很多调用微信能力的API，H5 页面也经常用到。本文以文件上传为为例，介绍了如何在Flutter Web项目集成微信 JS-SDK。
 
-## 配置 js-sdk```
+## 配置 js-sdk
+
+```js
 /**
  * 配置js
  * @param {*} options
@@ -18,8 +20,12 @@ export async function configJsSdk(options) {
   });
 }
 ```
+
 这块没有特殊内容，只是把原来调用初始化方法改为了Promise方式。
-## 上传图片```
+
+## 上传图片
+
+```js
 /**
  * 上传图片
  * @returns
@@ -69,9 +75,12 @@ export async function upload(sourceType) {
 
 ## 封装导出
 
-我们把上述代码封住到一个对象中，统一导出调用。```
+我们把上述代码封住到一个对象中，统一导出调用。
+
+```js
 import * as sdk from "./forest/index.js";
 
 window.sdk = sdk;
 ```
+
 这里可以把 sdk 改为你希望使用的名字。
