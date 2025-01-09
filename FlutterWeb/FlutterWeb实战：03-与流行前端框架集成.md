@@ -1,6 +1,6 @@
 # 与流行前端框架集成
 
-> 前端有非常多的框架、工具、库，这些都要比Dart Web 成熟、丰富。所以在将 Fluttter 编译成 Web 以后，若能使用现有的前端技术实现 web 端的特殊需求，肯定事半功倍。
+> 前端有非常多的框架、工具、库，这些都要比 Dart Web 成熟、丰富。所以在将 Fluttter 编译成 Web 以后，若能使用现有的前端技术实现 web 端的特殊需求，肯定事半功倍。
 
 ## 搭建框架
 
@@ -120,7 +120,7 @@ Recreating project ....
 
 "rm -rf build && rm -rf web && react-app-rewired build && mv build web"，
 
-同时删除不需要的依赖
+同时删除不需要的依赖, 增加 `react-app-rewired` 依赖
 
 ```diff
   "dependencies": {
@@ -135,9 +135,12 @@ Recreating project ....
 -      "react-app/jest"
     ]
   },
++ "devDependencies": {
++   "react-app-rewired": "^2.2.1"
++  }
 ```
 
-运行 `npm install`, 更新依赖。
+运行 `npm install` 或 `yarn install`, 更新依赖。
 
 这行命令的作用是，构建时先清理当前项目目录 build 和 web 目录，构建完成后将前端构建目录改名为 web，以提供给 flutter 进一步构建使用。
 
@@ -161,7 +164,10 @@ Recreating project ....
     "extends": [
     ]
   },
-  ...
+    ...
+  "devDependencies": {
+    "react-app-rewired": "^2.2.1"
+  }
 }
 ```
 
@@ -171,6 +177,8 @@ Recreating project ....
 rm -rf public
 cp -r web public
 ```
+
+运行 `npm run build`, 如果能成功生成 web 目录，代表集成成功
 
 ## 前端开发
 
@@ -216,11 +224,18 @@ export TAG=1.0.0
 ```
 
 这里需要注意的是，如果你不希望通过子目录访问 Flutter web 应用，那么需要将 `base-href` 设置为 `/`，或者移除该选项
-```
+
+```bash
 flutter clean && flutter build web --build-number=$VERSION_CODE --build-name=$TAG --web-renderer html --profile
 ```
+
+## 源码获取
+
+https://gitee.com/zacks/flutter-web-demo
 
 ## 参考资料
 
 - [Create React App](https://github.com/facebook/create-react-app)
 - [React App Wired](https://github.com/timarney/react-app-rewired/blob/master/README_zh.md)
+- [编写你的第一个 Flutter 网页应用](https://docs.flutter.cn/get-started/codelab-web/)
+- [flutter-web-demo](https://gitee.com/zacks/flutter-web-demo)
