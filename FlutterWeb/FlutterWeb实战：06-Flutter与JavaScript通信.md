@@ -71,7 +71,7 @@ class FlutterWeb {
 
 最后在 JS 侧导出了被调用方法：
 
-``js
+```js
 import * as flutterWeb from "./index.js";
 
 window.flutterWeb = flutterWeb;
@@ -108,8 +108,8 @@ resolveSdkSign().then((_) {})
 上传图片
 
 ```dart
-FlutterWeb.uploadImage().then(allowInterop(completer.complete),
-        allowInterop(completer.completeError));
+FlutterWeb.uploadImage()
+  .then(allowInterop(completer.complete), allowInterop(completer.completeError));
 ```
 
 
@@ -144,4 +144,5 @@ class PlatformCallWebPlugin {
 
 ## 参考资料
 
-- [web-view](https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html)
+- [js](https://pub.dev/packages/js)
+- [构建 Flutter Web 应用](https://docs.flutter.cn/platform-integration/web/building)

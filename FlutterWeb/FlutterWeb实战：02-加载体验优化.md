@@ -85,6 +85,8 @@ void main() {
 FlutterNativeSplash.remove();
 ```
 
+![](./.figures/loading.gif)
+
 
 ## GZIP压缩
 
