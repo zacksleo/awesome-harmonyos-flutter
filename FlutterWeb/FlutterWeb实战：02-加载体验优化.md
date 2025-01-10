@@ -222,4 +222,5 @@ Gzip 压缩开启之后，可以在浏览器的开发者工具中，打开网络
 - [gzip压缩检测](https://www.wetools.com/gzip)
 - [Flutter for Web 首次首屏优化——JS 分片优化](https://juejin.cn/post/7177202619788558391)
 - [Flutter Web 优化实践](https://www.jianshu.com/p/e61165cde5ab)
+- [Flutter 延迟加载组件](https://juejin.cn/post/6970870114316976142)
 
