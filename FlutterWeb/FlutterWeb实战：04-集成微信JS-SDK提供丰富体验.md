@@ -73,14 +73,27 @@ export async function upload(sourceType) {
 ```
 与前面相似，同样将图片上传封住成立Promise形式，方便后续调用。
 
+
+## 服务端处理文件上传
+
+```java
+
+  @Autowired
+  private WxMpService wxMpService;
+
+  File file = wxMpService.getMaterialService().mediaDownload(encode(request.getMediaId()));
+```
+
+服务端接收微信返回的 mediaId，调用相关 API 下载文件，然后再转存到本地或云存储中。
+
 ## 封装导出
 
 我们把上述代码封住到一个对象中，统一导出调用。
 
 ```js
-import * as sdk from "./forest/index.js";
+import * as flutterWeb from "./app/index.js";
 
-window.sdk = sdk;
+window.flutterWeb = flutterWeb;
 ```
 
-这里可以把 sdk 改为你希望使用的名字。
+这里可以把 flutterWeb 改为你希望使用的名字。

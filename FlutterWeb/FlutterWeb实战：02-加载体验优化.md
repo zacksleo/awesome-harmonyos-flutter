@@ -19,6 +19,101 @@
 
 使用延迟加载拆分文件，当前页面不需要的使用的代码延迟加载
 
+Dart 中提供了 defered 关键词，用于延迟加载组件。
+
+
+参考下方实现一个 DeferredWidget 组件
+
+```dart
+import 'dart:async';
+import 'package:ealing_widget/common/common_color.dart';
+import 'package:flutter/material.dart';
+
+typedef LibraryLoader = Future<void> Function();
+typedef DeferredWidgetBuilder = Widget Function();
+
+///延迟加载组件
+class DeferredWidget extends StatefulWidget {
+  DeferredWidget(this.libraryLoader, this.createWidget,
+      {Key? key, Widget? placeholder})
+      : placeholder =
+            placeholder ?? Container(color: CommonColors.color_widget_background),
+        super(key: key);
+
+  final LibraryLoader libraryLoader;
+  final DeferredWidgetBuilder createWidget;
+  final Widget placeholder;
+  // 存储 libraryLoader 对应的 future 数据
+  static final Map<LibraryLoader, Future<void>> _moduleLoaders = {};
+  // 存储已经预加载过了的 libraryLoader
+  static final Set<LibraryLoader> _loadedModules = {};
+
+  static Future<void>? preload(LibraryLoader loader) {
+    if (!_moduleLoaders.containsKey(loader)) {
+      _moduleLoaders[loader] = loader().then((dynamic _) {
+        _loadedModules.add(loader);
+      });
+    }
+    return _moduleLoaders[loader];
+  }
+
+  @override
+  _DeferredWidgetState createState() => _DeferredWidgetState();
+}
+
+class _DeferredWidgetState extends State<DeferredWidget> {
+  Widget? _loadedChild;
+
+  @override
+  void initState() {
+    if (DeferredWidget._loadedModules.contains(widget.libraryLoader)) {
+      _onLibraryLoaded();
+    } else {
+      DeferredWidget.preload(widget.libraryLoader)
+          ?.then((dynamic _) => _onLibraryLoaded());
+    }
+    super.initState();
+  }
+
+  void _onLibraryLoaded() {
+    setState(() {
+      _loadedChild = widget.createWidget();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _loadedChild ?? widget.placeholder;
+  }
+}
+```
+
+然后在 GoRouter 路由配置处, 以这种形式使用：
+
+```dart
+
+import '../screens/home/index.dart' deferred as home;
+
+final _router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => ppDeferredWidget(libraryLoader: home.loadLibrary, builder: (() => home.HomeIndexScreen())),
+    ),
+  ],
+);
+```
+
+经过以上配置， Flutter Web 打包后，将对 js 文件分割，只有在当前页面打开时，才会加载对应的 js 文件，这就实现了页面组件资源的延迟加载。
+
+![alt text](image.png)
+
+### 产物对比
+
+经过加载对比可以看到，首屏加载时，原本 2M 左右的 main.dart.js 大小，减小到了 1M 左右，显著提升了首评静态资源大小。
+
+![alt text](image-1.png)
+
 ## 加载动画
 
 增加过渡动画，在资源加载过程中使用一个加载动画，优化用户体验。
@@ -125,4 +220,6 @@ Gzip 压缩开启之后，可以在浏览器的开发者工具中，打开网络
 - [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)
 - [延迟加载组件](https://docs.flutter.cn/perf/deferred-components/)
 - [gzip压缩检测](https://www.wetools.com/gzip)
+- [Flutter for Web 首次首屏优化——JS 分片优化](https://juejin.cn/post/7177202619788558391)
+- [Flutter Web 优化实践](https://www.jianshu.com/p/e61165cde5ab)
 
