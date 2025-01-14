@@ -1,16 +1,22 @@
 ## 背景
 
-默认情况下，flutter打包web以后，首次打开页面需要加载大量的页面，这就需要做首屏加载优化
+默认情况下，Flutter 打包 web 以后，首次打开页面需要加载大量的页面，这就需要做首屏加载优化。
 
 ## 渲染引擎
 
-通过分析，wasmgc和skia需要加载较大的引擎包，很难优化，故选择html引擎
+通过分析，canvaskit 和 skwasm 需要加载较大的引擎包，很难优化，目前选择 3.22 版本，故选择 HTML Render 引擎
+
+> Flutter Web 计划在 2025 开始弃用 HTML Render。如果是 2025 年的新版本，可以考虑使用 skwasm 引擎。
 
 ## 字体图标裁剪
 
-体积裁剪，通过 bulid apk shaking icon，得到一个裁剪后的字体库，替换调flutter web打包的对应字体产物
+体积裁剪，通过 bulid apk shaking icon，得到一个裁剪后的字体库，替换调 Flutter Web 打包的对应字体产物
 
-先在app项目构建 apk： flutter build apk --tree-shake-icons
+先在 App 项目构建 apk：
+
+``` bash
+flutter build apk --tree-shake-icons
+```
 
 找到 `build/host/intermediates/assets/release/mergeReleaseAssets/flutter_assets/fonts/MaterialIcons-Regular.otf`
 将该文档复制到 `web/fonts/` 文件夹
@@ -215,6 +221,7 @@ Gzip 压缩开启之后，可以在浏览器的开发者工具中，打开网络
 
 ## 参考资料
 
+- [Web 渲染器](https://docs.flutter.cn/platform-integration/web/renderers/)
 - [Flutter Web加载优化](https://segmentfault.com/a/1190000042664763)
 - [How to Optimize Flutter Web and How Flutter Web work in Html Renderer](https://medium.com/@GSYTech/how-to-optimize-flutter-web-and-how-flutter-web-work-in-html-renderer-b399ffd66718)
 - [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)
