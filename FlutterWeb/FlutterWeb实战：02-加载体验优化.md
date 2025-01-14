@@ -1,6 +1,6 @@
 ## 背景
 
-默认情况下，Flutter 打包 web 以后，首次打开页面需要加载大量的页面，这就需要做首屏加载优化。
+默认情况下，Flutter 打包 web 以后，首次打开页面需要加载大量的资源，这就需要做首屏加载优化。
 
 ## 渲染引擎
 
@@ -21,6 +21,11 @@ flutter build apk --tree-shake-icons
 找到 `build/host/intermediates/assets/release/mergeReleaseAssets/flutter_assets/fonts/MaterialIcons-Regular.otf`
 将该文档复制到 `web/fonts/` 文件夹
 
+|文件采样| 压缩前 | 压缩后 | 压缩率 |
+|--- | --- | --- | --- |
+|MaterialIcons-Regular.otf| 1.5M | 2k | 1% |
+
+
 ## 延迟加载
 
 使用延迟加载拆分文件，当前页面不需要的使用的代码延迟加载
@@ -40,11 +45,7 @@ typedef DeferredWidgetBuilder = Widget Function();
 
 ///延迟加载组件
 class DeferredWidget extends StatefulWidget {
-  DeferredWidget(this.libraryLoader, this.createWidget,
-      {Key? key, Widget? placeholder})
-      : placeholder =
-            placeholder ?? Container(color: CommonColors.color_widget_background),
-        super(key: key);
+  DeferredWidget(this.libraryLoader, this.createWidget, {Key? key, Widget? placeholder}) : placeholder = placeholder ?? Container(color: CommonColors.color_widget_background), super(key: key);
 
   final LibraryLoader libraryLoader;
   final DeferredWidgetBuilder createWidget;
@@ -75,8 +76,7 @@ class _DeferredWidgetState extends State<DeferredWidget> {
     if (DeferredWidget._loadedModules.contains(widget.libraryLoader)) {
       _onLibraryLoaded();
     } else {
-      DeferredWidget.preload(widget.libraryLoader)
-          ?.then((dynamic _) => _onLibraryLoaded());
+      DeferredWidget.preload(widget.libraryLoader)?.then((dynamic _) => _onLibraryLoaded());
     }
     super.initState();
   }
@@ -116,7 +116,7 @@ final _router = GoRouter(
 
 ### 产物对比
 
-经过加载对比可以看到，首屏加载时，原本 2M 左右的 main.dart.js 大小，减小到了 1M 左右，显著提升了首评静态资源大小。
+经过加载对比可以看到，首屏加载时，原本 2M 左右的 main.dart.js 大小，减小到了 1M 左右，显著提升了首屏静态资源大小。
 
 ![alt text](image-1.png)
 
@@ -138,9 +138,7 @@ final _router = GoRouter(
 增加以下 css 样式
 
 ```css
-html {
-  height: 100%
-}
+html { height: 100% }
 
 body {
   margin: 0;
@@ -185,6 +183,8 @@ void main() {
 ```dart
 FlutterNativeSplash.remove();
 ```
+
+最终效果参考下图展示：
 
 ![](./.figures/loading.gif)
 
