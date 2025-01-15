@@ -47,6 +47,8 @@ C:\Program Files\Huawei\DevEco Studio\tools\ohpm\bin
 C:\Program Files\Huawei\DevEco Studio\tools\hvigor\bin
 
 C:\Program Files\Huawei\DevEco Studio\tools\node
+
+C:\Program Files\Huawei\DevEco Studio\jbr\bin
 ```
 
 ## 管理多个 Flutter 版本
