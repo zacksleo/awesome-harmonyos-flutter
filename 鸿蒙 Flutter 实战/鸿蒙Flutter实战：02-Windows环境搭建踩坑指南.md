@@ -31,11 +31,13 @@ C:\Program Files\Huawei\DevEco Studio\tools\ohpm\bin
 C:\Program Files\Huawei\DevEco Studio\tools\hvigor\bin
 
 C:\Program Files\Huawei\DevEco Studio\tools\node
+
+C:\Program Files\Huawei\DevEco Studio\jbr\bin
 ```
 
 SDK 下载完成，环境变量配置妥当后，使用 flutter doctor 检查各项是否通过。
 
-在命令行中，运行 ohpm -v, hvigor -v, node -v 查看输出是否正常，确保各个依赖的工具，其 PATH 配置正确。
+在命令行中，运行 ohpm -v, hvigorw -v, node -v 查看是否能使用，确保各个依赖的工具，其 PATH 配置正确。
 
 使用 `echo %DEVECO_SDK_HOME%`, `echo %JAVA_HOME%` 等检查用户变量是否生效。
 
