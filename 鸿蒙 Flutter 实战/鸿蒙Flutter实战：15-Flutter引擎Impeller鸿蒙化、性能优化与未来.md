@@ -134,3 +134,4 @@ HarmonyOS 希望更多应用尽快适配鸿蒙，开发者或者是厂商，也�
 - [Flutter 新一代图形渲染器 Impeller](https://mp.weixin.qq.com/s/PLvlSt3tlX6AjufDm0XVMA)
 - [Understanding Impeller: A Deep Dive into Flutter’s Rendering Engine](https://blog.stackademic.com/understanding-impeller-a-deep-dive-into-flutters-rendering-engine-ba96db0c9614)
 - [Flock](https://getflocked.dev/)
+- [鸿蒙 Flutter 实战](https://gitee.com/zacks/awesome-harmonyos-flutter)
