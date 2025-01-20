@@ -71,10 +71,23 @@ export async function upload(sourceType) {
   })
 }
 ```
-与前面相似，同样将图片上传封住成立Promise形式，方便后续调用。
+与前面相似，同样将图片上传封装成 Promise 形式，方便后续调用。
 
 
 ## 服务端处理文件上传
+
+引入依赖包，这里使用 wx-java-mp 包
+
+```xml
+    <!-- 微信公众号 -->
+    <dependency>
+      <groupId>com.github.binarywang</groupId>
+      <artifactId>wx-java-mp-spring-boot-starter</artifactId>
+      <version>4.4.0</version>
+    </dependency>
+```
+
+调用 SDK 接口
 
 ```java
 
@@ -97,3 +110,7 @@ window.flutterWeb = flutterWeb;
 ```
 
 这里可以把 flutterWeb 改为你希望使用的名字。
+
+## 参考资料
+
+- [JS-SDK说明文档](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html)
