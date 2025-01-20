@@ -32,6 +32,13 @@
 - [鸿蒙原生开发手记：05-开发之外的那些事](./鸿蒙原生开发/鸿蒙原生开发手记：05-开发之外的那些事.md)
 
 
+## 《FlutterWeb实战》
+
+- [FlutterWeb实战：01-序言](./FlutterWeb/FlutterWeb实战：01-序言.md)
+- [FlutterWeb实战：02-加载体验优化](./FlutterWeb/FlutterWeb实战：02-加载体验优化.md)
+- [FlutterWeb实战：03-与流行前端框架集成](./FlutterWeb/FlutterWeb实战：03-与流行前端框架集成.md)
+
+
 ## 公众号
 
 > HarmonyOS Flutter 开发
