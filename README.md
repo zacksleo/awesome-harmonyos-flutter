@@ -18,6 +18,7 @@
 - [鸿蒙Flutter实战：14-现有Flutter 项目支持鸿蒙 II](https://gitee.com/zacks/flutter-ohos-demo)
 - [鸿蒙Flutter实战：15-Flutter引擎Impeller鸿蒙化、性能优化与未来](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：15-Flutter引擎Impeller鸿蒙化、性能优化与未来.md)
 - [鸿蒙Flutter实战：16-无痛开发指南（适合新手）](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：16-无痛开发指南（适合新手）.md)
+- [鸿蒙Flutter实战：17-无痛上架审核指南](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：17-无痛上架审核指南.md)
 
 ## 《鸿蒙 Taro 实战》
 
