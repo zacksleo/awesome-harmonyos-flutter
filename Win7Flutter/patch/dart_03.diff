@@ -1,0 +1,176 @@
+diff --git a/runtime/bin/BUILD.gn b/runtime/bin/BUILD.gn
+index b3a1350..370a3a7 100644
+--- a/runtime/bin/BUILD.gn
++++ b/runtime/bin/BUILD.gn
+@@ -62,7 +62,7 @@ template("build_libdart_builtin") {
+       public_deps = [ "$fuchsia_sdk/pkg/fdio" ]
+     }
+     if (is_win) {
+-      libs = [ "Pathcch.lib" ]
++      # libs = [ "Pathcch.lib" ]
+     }
+     include_dirs = [ ".." ]
+     sources = builtin_impl_sources
+@@ -736,10 +736,7 @@ source_set("dart_snapshot_cc") {
+ }
+ 
+ source_set("dart_kernel_platform_cc") {
+-  visibility = [
+-    ":*",
+-    "../engine:*",
+-  ]
++  visibility = [ ":*" ]
+   deps = [
+     ":kernel_service_dill_linkable",
+     ":platform_strong_dill_linkable",
+diff --git a/runtime/bin/file_win.cc b/runtime/bin/file_win.cc
+index 48af422..0483474 100644
+--- a/runtime/bin/file_win.cc
++++ b/runtime/bin/file_win.cc
+@@ -13,7 +13,7 @@
+ #include <Shlwapi.h>    // NOLINT
+ #include <fcntl.h>      // NOLINT
+ #include <io.h>         // NOLINT
+-#include <pathcch.h>    // NOLINT
++// #include <pathcch.h>    // NOLINT
+ #include <winioctl.h>   // NOLINT
+ #undef StrDup           // defined in Shlwapi.h as StrDupW
+ #include <stdio.h>      // NOLINT
+@@ -384,6 +384,29 @@ static bool IsDeviceNamespacePrefixed(const std::unique_ptr<wchar_t[]>& path) {
+ // Note that some WinAPI functions (like SetCurrentDirectoryW) are always
+ // limited to MAX_PATH long paths and converting to `\\?\`-prefixed form does
+ // not remove this limitation. Always check Win API documentation.
++
++wchar_t* ConvertToLongPathTest(const wchar_t* path) {
++  if (path[1] == L':' && path[2] == L'\\') {
++    // Allocate a buffer large enough for the "\\?\" prefix and the original path.
++    size_t len = wcslen(path);
++    size_t new_len = len + 4; // 4 is for "\\?\" and the null terminator.
++    wchar_t* longPath = new wchar_t[new_len + 1];
++
++    // Copy "\\?\" to the new path.
++    wcscpy_s(longPath, new_len + 1, L"\\\\?\\");
++
++    // Copy the original path after the "\\?\" prefix.
++    wcscat_s(longPath, new_len + 1, path);
++
++    return longPath;
++  }
++  // If the path doesn't start with a drive letter, return a copy of the original path.
++  size_t len = wcslen(path);
++  wchar_t* longPath = new wchar_t[len + 1];
++  wcscpy_s(longPath, len + 1, path);
++  return longPath;
++}
++
+ std::unique_ptr<wchar_t[]> ToWinAPIPath(const char* utf8_path) {
+   auto path = Utf8ToWideChar(utf8_path);
+   // Among other things ConvertToAbsolutePath replaces '/' with '\',
+@@ -393,14 +416,19 @@ std::unique_ptr<wchar_t[]> ToWinAPIPath(const char* utf8_path) {
+     return std::unique_ptr<wchar_t[]>(nullptr);
+   }
+ 
+-  PWSTR canonical_path;
+-  if (PathAllocCanonicalize(abs_path.get(),
+-                            PATHCCH_ENSURE_IS_EXTENDED_LENGTH_PATH,
+-                            &canonical_path) != S_OK) {
+-    return std::unique_ptr<wchar_t[]>(nullptr);
+-  }
+-  auto result = std::unique_ptr<wchar_t[]>(wcsdup(canonical_path));
+-  LocalFree(canonical_path);
++  // Convert the absolute path to a long path with \\?\ prefix
++  wchar_t* longPath = ConvertToLongPathTest(abs_path.get());
++
++  // Get the length of the longPath
++  size_t len = wcslen(longPath);
++
++  // Allocate a new wchar_t array to return the result
++  std::unique_ptr<wchar_t[]> result = std::make_unique<wchar_t[]>(len + 1);
++  wcscpy_s(result.get(), len + 1, longPath);
++
++  // Clean up the manually allocated memory
++  delete[] longPath;
++
+   return result;
+ }
+ 
+@@ -531,72 +559,20 @@ typedef struct _REPARSE_DATA_BUFFER {
+   };
+ } REPARSE_DATA_BUFFER, *PREPARSE_DATA_BUFFER;
+ 
++static constexpr int kReparseDataHeaderSize =
++    sizeof(ULONG) + 2 * sizeof(USHORT);
++static constexpr int kMountPointHeaderSize = 4 * sizeof(USHORT);
++
+ bool File::CreateLink(Namespace* namespc,
+                       const char* utf8_name,
+                       const char* utf8_target) {
+   const auto name = ToWinAPIPath(utf8_name);
+ 
+-  std::unique_ptr<wchar_t[]> target;
+-  bool target_is_directory;
+-  if (File::IsAbsolutePath(utf8_target)) {
+-    target = ToWinAPIPath(utf8_target);
+-    target_is_directory =
+-        File::GetType(target.get(), /*follow_links=*/true) == kIsDirectory;
+-  } else {
+-    // The path of `target` is relative to `name`.
+-    //
+-    // To determine if `target` is a file or directory, we need to calculate
+-    // either its absolute path or its path relative to the current working
+-    // directory.
+-    //
+-    // For example:
+-    //
+-    // name=           C:\A\B\Link      ..\..\Link      ..\..\Link
+-    // target=         MyFile           MyFile          ..\Dir\MyFile
+-    // --------------------------------------------------------------------
+-    // target_path=    C:\A\B\MyFile    ..\..\MyFile    ..\..\..\Dir\MyFile
+-    //
+-    // The transformation steps are:
+-    // 1. target_path := name                           ..\..\Link
+-    // 2. target_path := remove_file(target_path)       ..\..\
+-    // 3. target_path := combine(target_path, target)   ..\..\..\Dir\MyFile
+-    target = Utf8ToWideChar(utf8_target);
+-
+-    // 1. target_path := name
+-    intptr_t target_path_max_length =
+-        wcslen(name.get()) + wcslen(target.get()) + 2;
+-    auto target_path = std::make_unique<wchar_t[]>(target_path_max_length);
+-    wcscpy_s(target_path.get(), target_path_max_length, name.get());
+-
+-    // 2. target_path := remove_file(target_path)
+-    HRESULT remove_result =
+-        PathCchRemoveFileSpec(target_path.get(), target_path_max_length);
+-    if (remove_result == S_FALSE) {
+-      // If the file component could not be removed, then `name` is
+-      // top-level, like "C:\" or "/". Attempts to create files at those paths
+-      // will fail with ERROR_ACCESS_DENIED.
+-      SetLastError(ERROR_ACCESS_DENIED);
+-      return false;
+-    } else if (remove_result != S_OK) {
+-      SetLastError(remove_result);
+-      return false;
+-    }
+-
+-    // 3. target_path := combine(target_path, target)
+-    HRESULT combine_result = PathCchCombineEx(
+-        target_path.get(), target_path_max_length, target_path.get(),
+-        target.get(), PATHCCH_ALLOW_LONG_PATHS);
+-    if (combine_result != S_OK) {
+-      SetLastError(combine_result);
+-      return false;
+-    }
+-
+-    target_is_directory =
+-        File::GetType(target_path.get(), /*follow_links=*/true) == kIsDirectory;
+-  }
++  std::unique_ptr<wchar_t[]> target = ToWinAPIPath(utf8_target);
+ 
+   DWORD flags = SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
+-  if (target_is_directory) {
++  File::Type type = File::GetType(namespc, utf8_target, true);
++  if (type == kIsDirectory) {
+     flags |= SYMBOLIC_LINK_FLAG_DIRECTORY;
+   }
+   int create_status = CreateSymbolicLinkW(name.get(), target.get(), flags);

@@ -1,0 +1,13 @@
+diff --git a/engine/src/flutter/shell/platform/windows/flutter_windows_engine.cc b/engine/src/flutter/shell/platform/windows/flutter_windows_engine.cc
+index 6ea0928181..c7bc1f1518 100644
+--- a/engine/src/flutter/shell/platform/windows/flutter_windows_engine.cc
++++ b/engine/src/flutter/shell/platform/windows/flutter_windows_engine.cc
+@@ -67,7 +67,7 @@ FlutterRendererConfig GetOpenGLRendererConfig() {
+     if (!host->egl_manager()) {
+       return false;
+     }
+-    return host->egl_manager()->render_context()->ClearCurrent();
++    return host->egl_manager()->render_context()->MakeCurrent();
+   };
+   config.open_gl.present = [](void* user_data) -> bool { FML_UNREACHABLE(); };
+   config.open_gl.fbo_reset_after_present = true;

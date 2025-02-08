@@ -1,0 +1,221 @@
+From 08a6dbe98c69f5e1d7ea9548474afd75df834a59 Mon Sep 17 00:00:00 2001
+From: vitoway <vitoway@email.com>
+Date: Sat, 30 Nov 2024 11:53:52 +0800
+Subject: [PATCH] Revert "[win/unwinding] Remove Windows7 handling of unwinding
+ records API."
+
+This reverts commit 34213ba60578e46fc2455c5a56b09d9efabc532b.
+---
+ runtime/bin/elf_loader.cc                 |  2 +
+ runtime/platform/unwinding_records.cc     |  2 +
+ runtime/platform/unwinding_records.h      |  6 +++
+ runtime/platform/unwinding_records_win.cc | 55 +++++++++++++++++++----
+ runtime/vm/dart.cc                        |  2 +
+ runtime/vm/unwinding_records_win.cc       | 12 ++++-
+ 6 files changed, 69 insertions(+), 10 deletions(-)
+
+diff --git a/runtime/bin/elf_loader.cc b/runtime/bin/elf_loader.cc
+index 70baa9c142a..d3260a61162 100644
+--- a/runtime/bin/elf_loader.cc
++++ b/runtime/bin/elf_loader.cc
+@@ -270,6 +270,7 @@ class LoadedElf {
+   }
+ 
+ bool LoadedElf::Load() {
++  UnwindingRecordsPlatform::Init();
+   VirtualMemory::Init();
+ 
+   if (error_ != nullptr) {
+@@ -301,6 +302,7 @@ LoadedElf::~LoadedElf() {
+     UnwindingRecordsPlatform::UnregisterDynamicTable(
+         dynamic_runtime_function_tables_[i]);
+   }
++  UnwindingRecordsPlatform::Cleanup();
+ #endif
+ 
+   // Unmap the image.
+diff --git a/runtime/platform/unwinding_records.cc b/runtime/platform/unwinding_records.cc
+index e6e69d0ed0b..1b9c4f6f540 100644
+--- a/runtime/platform/unwinding_records.cc
++++ b/runtime/platform/unwinding_records.cc
+@@ -19,6 +19,8 @@ intptr_t UnwindingRecordsPlatform::SizeInBytes() {
+ #if !defined(DART_HOST_OS_WINDOWS) ||                                          \
+     (!defined(TARGET_ARCH_X64) && !defined(TARGET_ARCH_ARM64))
+ 
++void UnwindingRecordsPlatform::Init() {}
++void UnwindingRecordsPlatform::Cleanup() {}
+ void UnwindingRecordsPlatform::RegisterExecutableMemory(
+     void* start,
+     intptr_t size,
+diff --git a/runtime/platform/unwinding_records.h b/runtime/platform/unwinding_records.h
+index 83d242a4984..0207d20e536 100644
+--- a/runtime/platform/unwinding_records.h
++++ b/runtime/platform/unwinding_records.h
+@@ -12,12 +12,18 @@ namespace dart {
+ 
+ class UnwindingRecordsPlatform : public AllStatic {
+  public:
++  static void Init();
++  static void Cleanup();
++
+   static intptr_t SizeInBytes();
+ 
+   static void RegisterExecutableMemory(void* start,
+                                        intptr_t size,
+                                        void** pp_dynamic_table);
+   static void UnregisterDynamicTable(void* p_dynamic_table);
++
++  static void* GetAddGrowableFunctionTableFunc();
++  static void* GetDeleteGrowableFunctionTableFunc();
+ };
+ 
+ #if (defined(DART_TARGET_OS_WINDOWS) || defined(DART_HOST_OS_WINDOWS)) &&      \
+diff --git a/runtime/platform/unwinding_records_win.cc b/runtime/platform/unwinding_records_win.cc
+index 937cd1d833e..ade1986eb3c 100644
+--- a/runtime/platform/unwinding_records_win.cc
++++ b/runtime/platform/unwinding_records_win.cc
+@@ -27,10 +27,48 @@ intptr_t UnwindingRecordsPlatform::SizeInBytes() {
+ #if defined(DART_HOST_OS_WINDOWS) &&                                           \
+     (defined(TARGET_ARCH_X64) || defined(TARGET_ARCH_ARM64))
+ 
++static HMODULE ntdll_module;
++static decltype(&::RtlAddGrowableFunctionTable)
++    add_growable_function_table_func_ = nullptr;
++static decltype(&::RtlDeleteGrowableFunctionTable)
++    delete_growable_function_table_func_ = nullptr;
++
++void* UnwindingRecordsPlatform::GetAddGrowableFunctionTableFunc() {
++  return add_growable_function_table_func_;
++}
++
++void* UnwindingRecordsPlatform::GetDeleteGrowableFunctionTableFunc() {
++  return delete_growable_function_table_func_;
++}
++
++void UnwindingRecordsPlatform::Init() {
++  ntdll_module =
++      LoadLibraryEx(L"ntdll.dll", nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
++  ASSERT(ntdll_module != nullptr);
++  // This pair of functions is not available on Windows 7.
++  add_growable_function_table_func_ =
++      reinterpret_cast<decltype(&::RtlAddGrowableFunctionTable)>(
++          ::GetProcAddress(ntdll_module, "RtlAddGrowableFunctionTable"));
++  delete_growable_function_table_func_ =
++      reinterpret_cast<decltype(&::RtlDeleteGrowableFunctionTable)>(
++          ::GetProcAddress(ntdll_module, "RtlDeleteGrowableFunctionTable"));
++  // Either both available, or both not available.
++  ASSERT((add_growable_function_table_func_ == nullptr) ==
++         (delete_growable_function_table_func_ == nullptr));
++}
++
++void UnwindingRecordsPlatform::Cleanup() {
++  FreeLibrary(ntdll_module);
++}
++
+ void UnwindingRecordsPlatform::RegisterExecutableMemory(
+     void* start,
+     intptr_t size,
+     void** pp_dynamic_table) {
++  auto func = add_growable_function_table_func_;
++  if (func == nullptr) {
++    return;
++  }
+   intptr_t unwinding_record_offset = size - kReservedUnwindingRecordsSizeBytes;
+   uint8_t* record_ptr = static_cast<uint8_t*>(start) + unwinding_record_offset;
+   CodeRangeUnwindingRecord* record =
+@@ -38,20 +76,21 @@ void UnwindingRecordsPlatform::RegisterExecutableMemory(
+   RELEASE_ASSERT(record->magic == kUnwindingRecordMagic);
+   uword start_num = reinterpret_cast<intptr_t>(start);
+   uword end_num = start_num + size;
+-  DWORD status = RtlAddGrowableFunctionTable(
+-      pp_dynamic_table,
+-      /*FunctionTable=*/record->runtime_function,
+-      /*EntryCount=*/record->runtime_function_count,
+-      /*MaximumEntryCount=*/record->runtime_function_count,
+-      /*RangeBase=*/start_num,
+-      /*RangeEnd=*/end_num);
++  DWORD status = func(pp_dynamic_table,
++                      /*FunctionTable=*/record->runtime_function,
++                      /*EntryCount=*/record->runtime_function_count,
++                      /*MaximumEntryCount=*/record->runtime_function_count,
++                      /*RangeBase=*/start_num,
++                      /*RangeEnd=*/end_num);
+   if (status != 0) {
+     FATAL("Failed to add growable function table: 0x%x\n", status);
+   }
+ }
+ 
+ void UnwindingRecordsPlatform::UnregisterDynamicTable(void* p_dynamic_table) {
+-  RtlDeleteGrowableFunctionTable(p_dynamic_table);
++  auto func = delete_growable_function_table_func_;
++  if (func == nullptr) return;
++  func(p_dynamic_table);
+ }
+ 
+ #endif  // defined(DART_HOST_OS_WINDOWS)
+diff --git a/runtime/vm/dart.cc b/runtime/vm/dart.cc
+index 3c4502ba353..66e48cdb656 100644
+--- a/runtime/vm/dart.cc
++++ b/runtime/vm/dart.cc
+@@ -342,6 +342,7 @@ char* Dart::DartInit(const Dart_InitializeParams* params) {
+   ForwardingCorpse::Init();
+   Api::Init();
+   NativeSymbolResolver::Init();
++  UnwindingRecordsPlatform::Init();
+   Page::Init();
+   StoreBuffer::Init();
+   MarkingStack::Init();
+@@ -757,6 +758,7 @@ char* Dart::Cleanup() {
+   StoreBuffer::Cleanup();
+   Object::Cleanup();
+   Page::Cleanup();
++  UnwindingRecordsPlatform::Cleanup();
+   StubCode::Cleanup();
+ #if defined(SUPPORT_TIMELINE)
+   if (FLAG_trace_shutdown) {
+diff --git a/runtime/vm/unwinding_records_win.cc b/runtime/vm/unwinding_records_win.cc
+index a92c2931df5..84aebe36387 100644
+--- a/runtime/vm/unwinding_records_win.cc
++++ b/runtime/vm/unwinding_records_win.cc
+@@ -109,6 +109,11 @@ const void* UnwindingRecords::GenerateRecordsInto(intptr_t offset,
+ // Special exception-unwinding records are put at the end of executable
+ // page on Windows for 64-bit applications.
+ void UnwindingRecords::RegisterExecutablePage(Page* page) {
++  // Won't set up unwinding records on Windows 7, so users won't be able
++  // to benefit from proper unhandled exceptions filtering.
++  auto function = static_cast<decltype(&::RtlAddGrowableFunctionTable)>(
++      UnwindingRecordsPlatform::GetAddGrowableFunctionTableFunc());
++  if (function == nullptr) return;
+   ASSERT(page->is_executable());
+   ASSERT(sizeof(CodeRangeUnwindingRecord) <=
+          UnwindingRecordsPlatform::SizeInBytes());
+@@ -120,7 +125,7 @@ void UnwindingRecords::RegisterExecutablePage(Page* page) {
+            unwinding_record_offset) CodeRangeUnwindingRecord();
+   InitUnwindingRecord(unwinding_record_offset, record, page->memory_->size());
+   RELEASE_ASSERT(record->magic == kUnwindingRecordMagic);
+-  DWORD status = RtlAddGrowableFunctionTable(
++  DWORD status = function(
+       /*DynamicTable=*/&record->dynamic_table,
+       /*FunctionTable=*/record->runtime_function,
+       /*EntryCount=*/record->runtime_function_count,
+@@ -133,6 +138,9 @@ void UnwindingRecords::RegisterExecutablePage(Page* page) {
+ }
+ 
+ void UnwindingRecords::UnregisterExecutablePage(Page* page) {
++  auto function = static_cast<decltype(&::RtlDeleteGrowableFunctionTable)>(
++      UnwindingRecordsPlatform::GetDeleteGrowableFunctionTableFunc());
++  if (function == nullptr) return;
+   ASSERT(page->is_executable() && !page->is_image());
+   intptr_t unwinding_record_offset =
+       page->memory_->size() - UnwindingRecordsPlatform::SizeInBytes();
+@@ -141,7 +149,7 @@ void UnwindingRecords::UnregisterExecutablePage(Page* page) {
+           reinterpret_cast<uint8_t*>(page->memory_->start()) +
+           unwinding_record_offset);
+   RELEASE_ASSERT(record->magic == kUnwindingRecordMagic);
+-  RtlDeleteGrowableFunctionTable(record->dynamic_table);
++  function(record->dynamic_table);
+ }
+ 
+ #endif  // defined(DART_HOST_OS_WINDOWS)
+-- 
+2.47.0.windows.1
