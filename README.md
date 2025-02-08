@@ -38,6 +38,10 @@
 - [FlutterWeb实战：01-序言](./FlutterWeb/FlutterWeb实战：01-序言.md)
 - [FlutterWeb实战：02-加载体验优化](./FlutterWeb/FlutterWeb实战：02-加载体验优化.md)
 - [FlutterWeb实战：03-与流行前端框架集成](./FlutterWeb/FlutterWeb实战：03-与流行前端框架集成.md)
+- [FlutterWeb实战：04-集成微信JS-SDK提供丰富体验](./FlutterWeb/FlutterWeb实战：04-集成微信JS-SDK提供丰富体验.md)
+- [FlutterWeb实战：05-与微信小程序交互](./FlutterWeb/FlutterWeb实战：05-与微信小程序交互.md)
+- [FlutterWeb实战：06-Flutter与JavaScript通信](./FlutterWeb/FlutterWeb实战：06-Flutter与JavaScript通信.md)
+- [FlutterWeb实战：07-自动化部署](./FlutterWeb/FlutterWeb实战：07-自动化部署.md)
 
 
 ## 公众号
