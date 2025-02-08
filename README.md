@@ -42,7 +42,7 @@
 
 ## 公众号
 
-> HarmonyOS Flutter 开发
+> 少湖说：少胡说，多观察。
 
 <img src="./qrcode.png" width="300">
 
