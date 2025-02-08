@@ -8,17 +8,17 @@
 
 ## 说明
 
-> 目前最新版 Flutter 并不支持 win7，可以修改引擎源码重新编译以支持win7系统。读者需要已在Windows电脑配置过 Flutter 开发环境，并且已经可以正常进行 Windows 版 Flutter 应用开发。
+> 目前最新版 Flutter 并不支持 win7，可以修改引擎源码重新编译以支持 win7 系统。读者需要已在 Windows 电脑配置过 Flutter 开发环境，并且已经可以正常进行 Windows 版 Flutter 应用开发。
 
-> Flutter 代码拉取过程中会进行复杂的文件下载，涉及多种联网方式，所以请保证自己的电脑有稳定的科学上网(翻墙工具建议使用tun隧道模式)，如果代码拉取过程中卡在了某一步，请检查网络。
+> Flutter 代码拉取过程中会进行复杂的文件下载，涉及多种联网方式，所以请保证自己的电脑有稳定的科学上网(翻墙工具建议使用 tun 隧道模式)，如果代码拉取过程中卡在了某一步，请检查网络。
 
-Flutter 引擎编译过程中大约需要50G的磁盘空间，可能耗时几个小时，请保证磁盘空间与耐心充足。
+Flutter 引擎编译过程中大约需要 50G 的磁盘空间，可能耗时几个小时，请保证磁盘空间与耐心充足。
 
 `好的，我们开始。`
 
 ## 环境准备
 
-- 1.编译的机器使用win10或win11的64位系统。
+- 1.编译的机器使用 win10 或 win11 的64位系统。
 - 2.确保计算机上启用了长路径支持。以管理员身份启动 PowerShell 并执行：
 
 ```bash
@@ -71,7 +71,7 @@ gclient sync
 
 > 这个过程耗时较久，可能下载超过10G的代码与依赖文件。如果中途因网络原因执行失败，可尝试重新执行命令，继续拉取。
 
-> 需要注意的是，命令可能卡在Syncing projects: 100% (n/n), done.这一步很久，虽然输出信息没有变化，但实际后台在使用cpid拉取大文件，请耐心等待。
+> 需要注意的是，命令可能卡在 Syncing projects: 100% (n/n), done. 这一步很久，虽然输出信息没有变化，但实际后台在使用cpid拉取大文件，请耐心等待。
 
 ![alt text](image.png)
 
@@ -89,7 +89,7 @@ gclient sync
 
 > 这一步的修改可让 Flutter 支持 win7。
 
-下载附件里的几个diff文件，将 flutter_01.diff 复制到flutter 源码根目录，执行命令
+下载附件里的几个 diff 文件，将 flutter_01.diff 复制到 flutter 源码根目录，执行命令
 
 ```bash
 git apply flutter_01.diff
@@ -105,7 +105,7 @@ git apply dart_03.diff
 
 ## 开始编译
 
-1.关闭命令行窗口，然后再次使用管理员权限启动命令行，定位到拉取的代码flutter\engine\src目录下。
+1.关闭命令行窗口，然后再次使用管理员权限启动命令行，定位到拉取的代码 `flutter\engine\src` 目录下。
 
 2.执行命令
 
@@ -134,10 +134,10 @@ flutter run --release --local-engine-src-path D:\flutter\engine\src\ --local-eng
 
 编译完成后的程序可在低版本windows系统运行，但需要注意几点:
 
-- 1.不支持32位
-- 2.需要win7系统安装kb4474419系统补丁，没有这个补丁的话会启动失败
-- 3.win8系统可能启动黑屏，可以把d3dcompiler_47.dll(可在企业微信安装目录找)文件放到引擎同目录下。
-- 4.win7下的其他问题，请参考附录链接里的企业微信相关文章。
+- 1.不支持 32 位
+- 2.需要 win7 系统安装 kb4474419 系统补丁，没有这个补丁的话会启动失败
+- 3.win8 系统可能启动黑屏，可以把 d3dcompiler_47.dll (可在企业微信安装目录找)文件放到引擎同目录下。
+- 4.win7 下的其他问题，请参考附录链接里的企业微信相关文章。
 
 ## 参考文章
 
@@ -152,9 +152,9 @@ flutter run --release --local-engine-src-path D:\flutter\engine\src\ --local-eng
 
 ## 附件
 
-- [flutter_01.diff](./patch/flutter_01.diff)
-- [dart_01.diff](./patch/dart_01.diff)
-- [dart_02.diff](./patch/dart_02.diff)
-- [dart_03.diff](./patch/dart_03.diff)
+- [flutter_01.diff](https://gitee.com/zacks/awesome-harmonyos-flutter/blob/master/FlutterWin7/patch/flutter_01.diff)
+- [dart_01.diff](https://gitee.com/zacks/awesome-harmonyos-flutter/blob/master/FlutterWin7/patch/dart_01.diff)
+- [dart_02.diff](https://gitee.com/zacks/awesome-harmonyos-flutter/blob/master/FlutterWin7/patch/dart_02.diff)
+- [dart_03.diff](https://gitee.com/zacks/awesome-harmonyos-flutter/blob/master/FlutterWin7/patch/dart_03.diff)
 
 
