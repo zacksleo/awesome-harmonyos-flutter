@@ -23,7 +23,7 @@ Flutter 引擎编译过程中大约需要50G的磁盘空间，可能耗时几个
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -Force
 ```
 
-- 3.安装 Python3，保证 Python3 命令可以正常使用。
+- 3.安装 Python3，保证 `python3` 命令可以正常使用。
 - 4.添加以下环境变量(注意根据实际vs安装情况配置变量)
 
 ```bash
