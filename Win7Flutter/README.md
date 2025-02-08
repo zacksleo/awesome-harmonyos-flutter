@@ -7,6 +7,7 @@
 - Flutter源码版本：3.29.0-1.0.pre.309
 
 ## 说明
+
 > 目前最新版 Flutter 并不支持 win7，可以修改引擎源码重新编译以支持win7系统。读者需要已在Windows电脑配置过 Flutter 开发环境，并且已经可以正常进行 Windows 版 Flutter 应用开发。
 
 > Flutter 代码拉取过程中会进行复杂的文件下载，涉及多种联网方式，所以请保证自己的电脑有稳定的科学上网(翻墙工具建议使用tun隧道模式)，如果代码拉取过程中卡在了某一步，请检查网络。
@@ -19,6 +20,7 @@ Flutter 引擎编译过程中大约需要50G的磁盘空间，可能耗时几个
 
 - 1.编译的机器使用win10或win11的64位系统。
 - 2.确保计算机上启用了长路径支持。以管理员身份启动 PowerShell 并执行：
+
 ```bash
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -Force
 ```
@@ -35,18 +37,29 @@ WINDOWSSDKDIR="C:\Program Files (x86)\Windows Kits\10"
 ## 代码拉取
 
 ###  1.执行命令拉取 `depot_tools`
+
 ```
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 ```
+
 ###  2.拉取完成后，将 depot_tools 目录加入系统环境变量 Path
+
 ### 3.执行命令拉取 Flutter 代码
+
 ```
 git clone https://github.com/flutter/flutter.git
 ```
+
 ###  4.拉取 Flutter 依赖
+
 - 4.1进入刚拉取的 Flutter 代码根目录
+
+```
 cd .\flutter\
+```
+
 - 4.2复制gclient脚本
+
 ```
 copy .\engine\scripts\standard.gclient .gclient
 ```
@@ -77,6 +90,7 @@ gclient sync
 > 这一步的修改可让 Flutter 支持 win7。
 
 下载附件里的几个diff文件，将 flutter_01.diff 复制到flutter 源码根目录，执行命令
+
 ```bash
 git apply flutter_01.diff
 ```
@@ -94,11 +108,12 @@ git apply dart_03.diff
 1.关闭命令行窗口，然后再次使用管理员权限启动命令行，定位到拉取的代码flutter\engine\src目录下。
 
 2.执行命令
+
 ```bash
 et build --config host_release
 ```
 
-host_release 表示编译 release 版本，可使用 `host_profile` 和 `host_release` 编译其他版本。
+`host_release` 表示编译 release 版本，可使用 `host_profile` 和 `host_release` 编译其他版本。
 
 注意这个 `et` 命令实际是 `gn` 命令与 `ninja` 命令的组合，更详细的参数配置可使用 `gn` 与 `ninja` 命令执行编译，具体请参考官方文档。
 
@@ -106,9 +121,13 @@ host_release 表示编译 release 版本，可使用 `host_profile` 和 `host_re
 
 ## 测试运行
 
-创建新flutter项目，创建完成后实现下面命令，可使用新编译的引擎运行exe。
+创建新 Flutter 项目，创建完成后实现下面命令，可使用新编译的引擎运行 exe。
+
+```bash
 flutter run --release --local-engine-src-path D:\flutter\engine\src\ --local-engine=host_release --local-engine-host=host_release
-注意根据实际flutter源码目录修改命令中的参数。
+```
+
+> 注意根据实际 Flutter 源码目录修改命令中的参数。
 
 
 ## 系统兼容说明
