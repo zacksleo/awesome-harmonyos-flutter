@@ -32,6 +32,19 @@ dependency_overrides:
       path: "packages/path_provider/path_provider"
 ```
 
+> 这里需要注意的时，如果不存在依赖冲突，dependency_overrides 可能不生效。也就是说，查看 pubspec.lock 文件，发现依赖的插件库，不存在 **_ohos 库，则说明 overrides不生效，此时使用以下方式，修改 pubspec_overrides.yaml 文件，手动添加文件。
+
+如果 overrides 不生效， 打开 pubspec_overrides.yaml，添加以下内容，再次运行 pub get, 发现 pubspec.lock 成功添加了 **_ohos 库。
+
+```yaml
+dependency_overrides:
+  # ohos
+  path_provider:
+    git:
+      url: "https://gitee.com/openharmony-sig/flutter_packages.git"
+      path: "packages/path_provider/path_provider"
+```
+
 另外，如果没有找到使用的鸿蒙化插件，则可以考虑自行编写垮端调用代码，或者编写新的插件库，作为原插件库的特定平台实现。
 
 ## 参考资料
