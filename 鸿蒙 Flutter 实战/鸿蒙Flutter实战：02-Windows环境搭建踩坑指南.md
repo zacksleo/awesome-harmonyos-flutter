@@ -4,7 +4,7 @@
 
 ### 1. 下载Flutter SDK，配置环境变量
 
- 鸿蒙 Flutter SDK 需要在 [Gitee 下载](https://gitee.com/openharmony-sig/flutter_flutter)。目前建议下载 dev 分支代码。
+ 鸿蒙 Flutter SDK 需要在 [Gitee 下载](https://gitcode.com/openharmony-sig/flutter_flutter)。目前建议下载 dev 分支代码。
 
 #### 需要配置以下用户变量
 

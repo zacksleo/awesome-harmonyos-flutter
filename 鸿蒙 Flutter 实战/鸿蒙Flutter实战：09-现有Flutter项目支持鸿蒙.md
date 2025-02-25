@@ -188,7 +188,7 @@ dependency_overrides:
   # ohos
   path_provider:
     git:
-      url: "https://gitee.com/openharmony-sig/flutter_packages.git"
+      url: "https://gitcode.com/openharmony-sig/flutter_packages.git"
       path: "packages/path_provider/path_provider"
 ```
 

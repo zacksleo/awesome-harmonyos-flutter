@@ -174,7 +174,7 @@ fvm flutter create --template app --platforms ohos --org com.moguyun.flutter oho
 dependency_overrides:
   flutter_inappwebview:
     git:
-      url: https://gitee.com/openharmony-sig/flutter_inappwebview.git
+      url: https://gitcode.com/openharmony-sig/flutter_inappwebview.git
       path: "flutter_inappwebview"
 ```
 

@@ -66,6 +66,6 @@
 ## 参考资料
 
 - [撰写双端平台代码（插件编写实现）](https://docs.flutter.cn/platform-integration/platform-channels/)
-- [鸿蒙Flutter功能开发](https://gitee.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/README.md)
+- [鸿蒙Flutter功能开发](https://gitcode.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/README.md)
 - [鸿蒙add-to-app示例](https://github.com/0xZOne/ohos-flutter-add2app)
-- [如何使用混合开发 module](https://gitee.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%20module.md)
+- [如何使用混合开发 module](https://gitcode.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%20module.md)

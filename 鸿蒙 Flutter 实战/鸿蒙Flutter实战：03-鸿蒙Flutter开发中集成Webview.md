@@ -9,7 +9,7 @@
 ```yaml
   flutter_inappwebview:
     git:
-      url: https://gitee.com/openharmony-sig/flutter_inappwebview.git
+      url: https://gitcode.com/openharmony-sig/flutter_inappwebview.git
       path: "flutter_inappwebview"
 ```
 
@@ -18,7 +18,7 @@
 ```yaml
   webview_flutter:
     git:
-      url: https://gitee.com/openharmony-sig/flutter_packages.git
+      url: https://gitcode.com/openharmony-sig/flutter_packages.git
       path: "packages/webview_flutter/webview_flutter"
 ```
 
@@ -257,5 +257,5 @@ Scaffold(
 
 ## 参考资料
 
-- [flutter_inappwebview](https://gitee.com/openharmony-sig/flutter_inappwebview)
-- [如何使用PlatformView](https://gitee.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8PlatformView.md)
+- [flutter_inappwebview](https://gitcode.com/openharmony-sig/flutter_inappwebview)
+- [如何使用PlatformView](https://gitcode.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8PlatformView.md)

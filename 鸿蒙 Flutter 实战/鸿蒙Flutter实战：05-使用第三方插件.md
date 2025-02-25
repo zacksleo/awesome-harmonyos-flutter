@@ -28,7 +28,7 @@ dependency_overrides:
   # ohos
   path_provider:
     git:
-      url: "https://gitee.com/openharmony-sig/flutter_packages.git"
+      url: "https://gitcode.com/openharmony-sig/flutter_packages.git"
       path: "packages/path_provider/path_provider"
 ```
 
@@ -41,7 +41,7 @@ dependency_overrides:
   # ohos
   path_provider:
     git:
-      url: "https://gitee.com/openharmony-sig/flutter_packages.git"
+      url: "https://gitcode.com/openharmony-sig/flutter_packages.git"
       path: "packages/path_provider/path_provider"
 ```
 
@@ -49,5 +49,5 @@ dependency_overrides:
 
 ## 参考资料
 
-- [如何使用PlatformView](https://gitee.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8PlatformView.md)
+- [如何使用PlatformView](https://gitcode.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8PlatformView.md)
 - [使用 ArkTs 开发 Flutter 鸿蒙平台插件](https://gitee.com/zacks/awesome-harmonyos-flutter/blob/master/%E9%B8%BF%E8%92%99Flutter%E5%AE%9E%E6%88%98%EF%BC%9A06-%E4%BD%BF%E7%94%A8ArkTs%E5%BC%80%E5%8F%91Flutter%E9%B8%BF%E8%92%99%E6%8F%92%E4%BB%B6.md)

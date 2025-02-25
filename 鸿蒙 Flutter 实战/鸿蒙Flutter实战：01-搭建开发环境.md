@@ -66,7 +66,7 @@ fvm install 3.22.0
 拷贝仓库并重命名为 `custom_x.y.z`的名字
 
 ```bash
-git clone -b dev https://gitee.com/openharmony-sig/flutter_flutter.git custom_3.7.12
+git clone -b dev https://gitcode.com/openharmony-sig/flutter_flutter.git custom_3.7.12
 ```
 
 4. 在项目中使用单独的 flutter sdk 版本, 在项目目录中执行：
