@@ -68,6 +68,7 @@ fvm install 3.22.0
 ```bash
 git clone -b dev https://gitcode.com/openharmony-sig/flutter_flutter.git custom_3.7.12
 ```
+> 注意命名格式必须为 `custom_x.y.z`，即必须以 custom_ 开头，后面跟三位数字版本号，如 `custom_3.7.12`
 
 4. 在项目中使用单独的 flutter sdk 版本, 在项目目录中执行：
 
