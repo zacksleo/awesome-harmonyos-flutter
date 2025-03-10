@@ -54,3 +54,31 @@ SDK 下载完成，环境变量配置妥当后，使用 flutter doctor 检查各
 ### 3. VsCode 无法识别设备
 
 用 DevEco 打开项目，待项目分析完成后，Vscode 中的设备应该可以出来了。
+
+### 4. 插件Har包找不到
+
+打开DevEco运行时，出现类似以下错误
+
+```bash
+hpm ERROR: missing: flutter_inappwebview_ohos@/.../ohos/har/flutter_inappwebview_ohos.har, required by entry@1.0.0
+ohpm ERROR: Found exception: Error: Fetch local file package error, /.../ohos/har/flutter_inappwebview_ohos.har does not exist., reached retry limit or non retryable error encountered.
+ohpm ERROR: missing: video_player_ohos@/.../ohos/har/video_player_ohos.har, required by entry@1.0.0
+ohpm ERROR: Found exception: Error: Fetch local file package error, /.../ohos/har/video_player_ohos.har does not exist., reached retry limit or non retryable error encountered.
+ohpm ERROR: missing: path_provider_ohos@/.../ohos/har/path_provider_ohos.har, required by entry@1.0.0
+ohpm ERROR: Found exception: Error: Fetch local file package error, /.../ohos/har/path_provider_ohos.har does not exist., reached retry limit or non retryable error encountered.
+ohpm ERROR: missing: shared_preferences_ohos@/.../ohos/har/shared_preferences_ohos.har, required by entry@1.0.0
+ohpm ERROR: Found exception: Error: Fetch local file package error, /.../ohos/har/shared_preferences_ohos.har does not exist., reached retry limit or non retryable error encountered.
+ohpm ERROR: missing: image_picker_ohos@/.../ohos/har/image_picker_ohos.har, required by entry@1.0.0
+ohpm ERROR: Found exception: Error: Fetch local file package error, /.../ohos/har/image_picker_ohos.har does not exist., reached retry limit or non retryable error encountered.
+ohpm ERROR: missing: @ohos/flutter_ohos@/.../ohos/har/flutter.har, required by @
+ohpm ERROR: Found exception: Error: Fetch local file package error, /.../ohos/har/flutter.har does not exist., reached retry limit or non retryable error encountered.
+ohpm ERROR: Install failed, detail: Error: Fetch local file package error, /.../ohos/har/flutter_inappwebview_ohos.har does not exist.
+```
+
+此时需要在Flutter项目下运行 `flutter run` 或 `flutter build` 以生成插件的 har 包
+
+### 4. 如何自定义显示 DevEco 打开 ohos 后的项目名称
+
+每个鸿蒙Flutter项目，用DevEco打开ohos工程后，默认显示的工程名称为 `ohos`，如果想自定义显示的工程名称，可以参考以下步骤：
+
+在 ohos/.idea 目录下，新建一个 `.name` 文件，写入项目名称即可。
