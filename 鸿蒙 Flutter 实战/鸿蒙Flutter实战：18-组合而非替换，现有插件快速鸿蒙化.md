@@ -16,7 +16,7 @@ dependencies:
 
 ## 什么是联合插件？
 
-Federated plugins (联合插件) 是一种将对不同平台的支持分为单独的软件包。所以，联合插件能够使用针对 iOS、Android、Web 甚至是针对汽车 (例如在 IoT 设备上)分别使用对应的 package。除了这些好处之外，它还能够让领域专家在他们最了解的平台上扩展现有平台插件。
+[Federated plugins (联合插件) ](https://docs.flutter.cn/packages-and-plugins/developing-packages#federated-plugins)是一种将对不同平台的支持分为单独的软件包。所以，联合插件能够使用针对 iOS、Android、Web 甚至是针对汽车 (例如在 IoT 设备上)分别使用对应的 package。除了这些好处之外，它还能够让领域专家在他们最了解的平台上扩展现有平台插件。
 
 联合插件需要以下 package：
 
