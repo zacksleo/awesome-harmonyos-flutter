@@ -60,4 +60,5 @@ dependencies:
 需要注意，并非所有的插件都适合这种方式，有两种情况并不适合：
 
 1.插件并非联合插件，也就是将所有平台的实现聚合在一个package中，这种建议使用 dependence_override 来覆写插件依赖
+
 2.插件虽然是联合插件，但是鸿蒙化需要修改抽象层代码，典型的如用了Platform.ohos 这种只有鸿蒙Flutter开发SDK才有的API，这种也建议使用dependence_override
