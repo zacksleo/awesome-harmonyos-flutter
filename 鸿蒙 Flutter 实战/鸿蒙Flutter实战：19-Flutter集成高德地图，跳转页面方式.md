@@ -1,6 +1,6 @@
 ## 前言
 
-在之前的文章[现有Flutter项目支持鸿蒙II](https://gitee.com/zacks/flutter-ohos-demo)中，介绍了如果使用第三方插件，同时给出了非常多的使用案例，如
+在之前的文章[现有Flutter项目支持鸿蒙II](https://gitee.com/zacks/flutter-ohos-demo)中，介绍了如果使何第三方插件，同时给出了非常多的使用案例，如
 flutter_inappwebview，video_player, image_picker 等，本文将开始介绍如何集成高德地图。
 
 ## 整体方案
