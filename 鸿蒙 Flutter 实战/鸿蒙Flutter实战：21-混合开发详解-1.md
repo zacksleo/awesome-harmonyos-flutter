@@ -17,6 +17,8 @@
 
 HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资源和配置文件。通过HAR可以实现多个模块或多个工程共享ArkUI组件、资源等相关代码。
 
+![alt text](image-19.png)
+
 这种开发方式，就是将 Flutter 模块编译打包成 HAR 包，在原生鸿蒙项目中，以 Har 包的方式引入这个模块包，从而实现混合开发。
 
 2. 以源码的方式加载到 HarmonyOS 工程
