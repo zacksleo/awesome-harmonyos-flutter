@@ -2,7 +2,7 @@
 
 ## 创建 Flutter 模块
 
-首先创建一个 Flutter 模块，我们选择与 ohos项目同级目录
+首先创建一个 Flutter 模块，我们选择与 ohos 项目同级目录
 
 ```bash
 flutter create --template=module flutter_module
@@ -77,6 +77,9 @@ Consuming the Module
   },
 ```
 
+最后运行 DevEco 项目。
+
 ## 参考资料
 
+- [flutter_page_sample1](https://gitcode.com/openharmony-sig/flutter_samples/tree/master/ohos/flutter_page_sample1)
 - [flutter_page_sample2](https://gitcode.com/openharmony-sig/flutter_samples/tree/master/ohos/flutter_page_sample2)

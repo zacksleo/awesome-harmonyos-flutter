@@ -74,11 +74,3 @@ flutter build har --debug
     "@ohos/flutter_module": "../flutter_module"
   }
 ```
-
-引用 Har 工程
-
-https://github.com/0xZOne/ohos-flutter-add2app
-
-引用 Flutter module 源码
-
-https://gitcode.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%20module.md
