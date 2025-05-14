@@ -77,6 +77,12 @@ ProcessException: The command failedCommand: ohpm clean
 
 目前不行，元服务大小有限制 （2M），Flutter 构建产物过大，不符合这一要求
 
+### 8. 如何自定义显示 DevEco 打开 ohos 后的项目名称
+
+每个鸿蒙Flutter项目，用DevEco打开ohos工程后，默认显示的工程名称为 `ohos`，如果想自定义显示的工程名称，可以参考以下步骤：
+
+在 ohos/.idea 目录下，新建一个 `.name` 文件，写入项目名称即可。
+
 ## 参考资料
 
 - [Flutter SDK 仓库-常见问题](https://gitcode.com/openharmony-sig/flutter_flutter#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
