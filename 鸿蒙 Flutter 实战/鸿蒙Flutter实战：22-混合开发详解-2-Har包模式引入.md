@@ -77,6 +77,23 @@ Consuming the Module
   },
 ```
 
+修改 Ohos 的入口文件, 将 Flutter 模块生成的 .ohos目录中的 EntryAbility.ets 和 Index.ets 文件复制到宿主工程中进行替换
+
+```
+cp flutter_module/.ohos/entry/src/main/ets/entryability/EntryAbility.ets ohos_app/entry/src/main/ets/entryability/EntryAbility.ets
+cp flutter_module/.ohos/entry/src/main/ets/pages/Index.ets ohos_app/entry/src/main/ets/pages/Index.ets
+```
+
+其中 `EntryAbility` 继承自 `FlutterAbility`，而 `FlutterAbility` 继承自 `UIAbility`, 它在 `UIAbility` 上增加了以下功能：
+
+1. Flutter引擎全生命周期管理
+  - 初始化： 创建 Flutter引擎
+  - 销毁：在 onDestroy 中释放Flutter引擎，避免内存泄漏
+  - 状态同步：将宿主 Ability 的生命周期事件，实时同步至 Flutter 引擎， 如 onCreate、onDestroy、onForeground、onBackground 等。
+
+
+
+
 最后运行 DevEco 项目。
 
 ## 参考资料
