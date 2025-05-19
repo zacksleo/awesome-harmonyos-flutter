@@ -4,18 +4,62 @@
 
 ## 源码依赖
 
+### 模块调整
+
 ```bash
 # 将 flutter_module 拷贝到 ohos_app 中
 cp -r my_flutter_module/.ohos/flutter_module ohos_app/
-# 在ohos_app/flutter_module 中创建 rawfile 目录
-mkdir -p ohos_app/flutter_module/src/main/resources/rawfile
-# 将 flutter 生成的 flutter_module中的flutter_assets 复制到 ohos_app
-cp -r my_flutter_module/.ohos/flutter_module/src/main/resources/rawfile/flutter_assets ohos_app/flutter_module/src/main/resources/rawfile
 # 将 flutter 生成的中的flutter.har 复制到 ohos_app/har
-cp flutter_module/.ohos/har/flutter.har ohos_app/har/flutter.har
+cp my_flutter_module/.ohos/har/flutter.har ohos_app/har/flutter.har
 ```
 
+上面这是一种方式，如果不想使用复制粘贴，也可以使用软链接的方式，将 flutter_module 软链接到 ohos_app 中。
 
+```bash
+rm -rf .ohos
+ln -s ../ohos_app .ohos
+```
+
+链接完以后，再次运行 `flutter run`, 便可以更新鸿蒙宿主工程中的 flutter_module 中的代码，如生成  flutter.har 文件
+
+
+### 依赖配置
+
+1. 修改 `ohos_app/build-profile.json5` 文件，在 modules 目录下添加模块配置：
+
+```json
+  "modules": [
+    ...
+    {
+      "name": "flutter_module",
+      "srcPath": "./flutter_module",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+```
+
+2. 编辑 `ohos_app/oh-package.json` 文件，添加如下依赖
+
+```json
+  "dependencies": {
+    "@ohos/flutter_module": "./flutter_module",
+    "@ohos/flutter_ohos": "./har/flutter.har"
+  },
+```
+
+注意，与 Har 包引入方式不同的是，这里 "@ohos/flutter_module" 引用的是目录，同时 "@ohos/flutter_ohos" 通过相对目录引用 Flutter 引擎库的 Har 包文件。
+
+
+## 运行项目
+
+回到 DevEco，运行 ohos_app 项目。
 
 ## 参考资料
 
