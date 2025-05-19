@@ -30,20 +30,31 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 ## 开发流程
 
+1. 总目录
 
-1. 创建原生鸿蒙工程
+为了方便管理/演示，本示例的目录名为 ohos_flutter_module_demo, 我们将原生鸿蒙工程和 Flutter 模块都在这个目录下创建。
 
-这个也就是宿主工程，这里我们使用 DevEco Studio 创建一个原生鸿蒙工程，本文中工程名命名为 ohos_app。
+2. 创建原生鸿蒙工程
 
-2. 创建 Flutter 模块
+这个也就是宿主工程，这里我们使用 DevEco Studio，在 ohos_flutter_module_demo 目录下面， 创建一个原生鸿蒙工程，本文中工程名命名为 ohos_app。
+
+3. 创建 Flutter 模块
 
 这个流程都一样，我们可以使用命令以下命令创建一个 Flutter 模块:
 
 ```bash
-flutter create --template=module flutter_module
+flutter create --template=module my_flutter_module
 ```
 
-创建时，为了方便维护，Flutter 模块在宿主项目外部创建，建议与宿主项目同级目录。本文中，上级目录为 ohos_flutter_module, 其下有两个子目录，分别是 ohos_app (宿主项目)，和 flutter_module (Flutter 模块)。
+最终项目目录结构如下：
+
+```
+ohos_flutter_module_demo
+├── my_flutter_module
+├── ohos_app
+```
+
+这样，为了方便维护，Flutter 模块在宿主项目外部创建，与宿主项目同级目录。本文中，上级目录为 ohos_flutter_module_demo, 其下有两个子目录，分别是 ohos_app (宿主项目)，和 my_flutter_module (Flutter 模块)。
 
 3. 编译 Flutter 模块
 
@@ -59,11 +70,20 @@ flutter build har --debug
 
 如果是通过 Har 包模式，则可将 Har 包添加至依赖文件中：
 
+首先先构建出的 Har 包复制到 ohos 鸿蒙工程中：
+
+```bash
+cp -r my_flutter_module/.ohos/har/* ohos_app/har/
+```
+
 ```json
   "dependencies": {
-    "@ohos/flutter_module": "file:../flutter_module/.ohos/har/flutter_module.har",
-    "@ohos/flutter_ohos":  "file:../flutter_module/.ohos/har/flutter.har"
+    "@ohos/flutter_module": "file:har/flutter_module.har",
+    "@ohos/flutter_ohos":  "file:har/flutter.har"
   },
+  "overrides" {
+    "@ohos/flutter_ohos": "file:har/flutter.har",
+  }
 ```
 
 如果是通过源码模式，则需将 Flutter 模块的源码添加至依赖文件中：
@@ -74,10 +94,10 @@ flutter build har --debug
     "@ohos/flutter_module": "../flutter_module"
   }
 ```
-
+4. 修改入口文件(可选)
 修改入口文件, 将 Flutter 模块生成的 .ohos目录中的 EntryAbility.ets 和 Index.ets 文件复制到宿主工程中进行替换
 
 ```
-cp flutter_module/.ohos/entry/src/main/ets/entryability/EntryAbility.ets ohos_app/entry/src/main/ets/entryability/EntryAbility.ets
-cp flutter_module/.ohos/entry/src/main/ets/pages/Index.ets ohos_app/entry/src/main/ets/pages/Index.ets
+cp my_flutter_module/.ohos/entry/src/main/ets/entryability/EntryAbility.ets ohos_app/entry/src/main/ets/entryability/EntryAbility.ets
+cp my_flutter_module/.ohos/entry/src/main/ets/pages/Index.ets ohos_app/entry/src/main/ets/pages/Index.ets
 ```
