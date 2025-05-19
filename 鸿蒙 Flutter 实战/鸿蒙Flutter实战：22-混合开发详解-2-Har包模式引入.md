@@ -36,6 +36,13 @@ Your module code is in flutter_module/lib/main.dart.
 
 接下来，我们使用 flutter build har 命令将 Flutter 模块打包成 Har 包。
 
+
+首先配置签名，用 DevEco 打开 .ohos 目录，然后地项目签名，操作如下：
+
+```
+DevEco Studio打开ohos工程后配置调试签名(File -> Project Structure -> Signing Configs 勾选Automatically generate signature)
+```
+
 ```bash
 flutter build har --debug
 ```
@@ -66,35 +73,35 @@ Consuming the Module
 
 观察目录 flutter_module/.ohos/har 目录，可以看到 Flutter 模块的 Har 包已经生成了, 里面生成了两个文件，分别是 flutter_module.har 和 flutter.har。
 
-接下来，我们将回到 ohos 项目工程，将上面生成的 Har 包添依赖配置中。
+接下来，我们将生成的har包复制到宿主项目 ohos 中，然后回到 ohos 项目工程，将上面生成的 Har 包添依赖配置中。
 
-编辑 ohos_app/oh-package.json5 文件：
+1. 复制 Har 包
+
+```bash
+cp -r my_flutter_module/.ohos/har/* MyApplication/har/
+```
+
+ 2. 编辑 ohos_app/oh-package.json5 文件：
 
 ```json
   "dependencies": {
-    "@ohos/flutter_module": "file:../flutter_module/.ohos/har/flutter_module.har",
-    "ohos/flutter_ohos": "file:../flutter_module/.ohos/har/flutter.har"
+    "@ohos/flutter_module": "file:har/flutter_module.har",
+    "@ohos/flutter_ohos": "file:har/flutter.har"
   },
+    "overrides" {
+      "@ohos/flutter_ohos": "file:har/flutter.har",
+    }
 ```
 
-修改 Ohos 的入口文件, 将 Flutter 模块生成的 .ohos目录中的 EntryAbility.ets 和 Index.ets 文件复制到宿主工程中进行替换
+这里需要配置 overrides ，为了解决依赖冲突问题，因为 `@ohos/flutter_module`依赖了 `@ohos/flutter_ohos`, 但因为使用的是相对目录，会导致加载失败，故这里通过 overrides 来重新指定  `@ohos/flutter_ohos` 的路径。
 
+另外，与上文提示或者官方文档中不同的是，我们在 dependencies 也添加了 `@ohos/flutter_ohos` ，这是为了 IDE 提示的问题，不加的话会出现以下错误信息
+
+```bash
+Cannot find module '@ohos/flutter_ohos' or its corresponding type declarations. <ArkTSCheck>
 ```
-cp flutter_module/.ohos/entry/src/main/ets/entryability/EntryAbility.ets ohos_app/entry/src/main/ets/entryability/EntryAbility.ets
-cp flutter_module/.ohos/entry/src/main/ets/pages/Index.ets ohos_app/entry/src/main/ets/pages/Index.ets
-```
 
-其中 `EntryAbility` 继承自 `FlutterAbility`，而 `FlutterAbility` 继承自 `UIAbility`, 它在 `UIAbility` 上增加了以下功能：
-
-1. Flutter引擎全生命周期管理
-  - 初始化： 创建 Flutter引擎
-  - 销毁：在 onDestroy 中释放Flutter引擎，避免内存泄漏
-  - 状态同步：将宿主 Ability 的生命周期事件，实时同步至 Flutter 引擎， 如 onCreate、onDestroy、onForeground、onBackground 等。
-
-
-
-
-最后运行 DevEco 项目。
+最后, 再次对ohos 项目签名，并运行 DevEco 项目。
 
 ## 参考资料
 
