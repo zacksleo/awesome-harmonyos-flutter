@@ -123,6 +123,7 @@ installing hap. bundleName: com.shaohushuo.ohos_app
 
 经过一段等待之后，我们的 App 就运行起来了，应用展示的是一个原生页面，Flutter 引擎及 Flutter 页面并没有加载，我们将在接下来的章节中，介绍这些实现。
 
+
 ## 参考资料
 
 - [撰写双端平台代码（插件编写实现）](https://docs.flutter.cn/platform-integration/platform-channels/)
