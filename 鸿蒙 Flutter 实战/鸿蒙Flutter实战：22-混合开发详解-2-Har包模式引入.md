@@ -1,12 +1,24 @@
 # 以 Har 包的方式加载到 HarmonyOS 工程
 
-## 创建 Flutter 模块
+## 创建工作
+
+### 创建一个根目录
+
+```bash
+mkdir ohos_flutter_module_demo
+```
+
+这个目录用于存放 flutter 项目和鸿蒙项目。
+
+### 创建 Flutter 模块
 
 首先创建一个 Flutter 模块，我们选择与 ohos_app 项目同级目录
 
 ```bash
 flutter create --template=module my_flutter_module
 ```
+
+> 如果使用了 fvm，首先确定当前目录使用的 flutter 版本为鸿蒙的 SDK 版本，如可以使用 `fvm use custom_3.22.0`设置，然后在 flutter 命令前加上 fvm，上面的命令也就变成了 `fvm flutter create --template=module my_flutter_module`
 
 命令行出现以下输出：
 
@@ -26,8 +38,21 @@ Your module code is in my_flutter_module/lib/main.dart.
 
 ![alt text](image-20.png)
 
+### 创建 DevEco 工程
 
-可以看到，我们将 Flutter 模块放在了与 ohos_app 项目同级。my_flutter_module 中自动创建了 .ohos 目录, 这也是一个简单的鸿蒙项目。
+使用 DevEco 在 ohos_flutter_module_demo 目录下，新建一个名为 ohos_app 的工程。
+
+![alt text](image-22.png)
+
+> 注意保存的目录为 xxxx/ohos_flutter_module_demo/ohos_app
+
+
+创建成功后，整个目录结构如下：
+
+![alt text](image-23.png)
+
+
+可以看到，我们将 Flutter 模块放在了与 ohos_app 项目同级。my_flutter_module 中自动创建了 .ohos 目录, 这也是一个简单的鸿蒙项目，不过会包含一个名为 flutter_module 的模块。
 
 ##  将 Flutter 模块打包成 Har 包
 
