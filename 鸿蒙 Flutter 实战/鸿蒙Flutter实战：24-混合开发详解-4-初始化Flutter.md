@@ -12,28 +12,28 @@
 
 1. 如果通过 Har 包方式引入 Flutter 模块，则需要添加如下内容
 
-```diff
+```json
   "dependencies": {
-+    "@ohos/flutter_module": "file:har/my_flutter_module.har",
-+    "@ohos/flutter_ohos": "file:har/my_flutter.har"
+    "@ohos/flutter_module": "file:har/my_flutter_module.har",
+    "@ohos/flutter_ohos": "file:har/my_flutter.har"
   },
   "overrides" {
-+    "@ohos/flutter_ohos": "file:har/flutter.har",
+    "@ohos/flutter_ohos": "file:har/flutter.har",
   }
 ```
 
 2. 如果通过源码方式引入 Flutter 模块，则需要添加如下内容：
 
-```diff
+```json
   "dependencies": {
-+    "@ohos/flutter_module": "./flutter_module",
-+    "@ohos/flutter_ohos": "./har/flutter.har"
+    "@ohos/flutter_module": "./flutter_module",
+    "@ohos/flutter_ohos": "./har/flutter.har"
   },
 ```
 
 ## Flutter 引擎初始化
 
-编辑 `ohos_app/entry/src/main/ets/entryability/EntryAbility.ts` 文件，按以方式修改：
+编辑 `ohos_app/entry/src/main/ets/entryability/EntryAbility.ts` 文件，按以下方式修改：
 
 ```diff
 -import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -88,6 +88,20 @@
 }
 ```
 
+最终 EntryAbility.ts 文件内容如下：
+
+```ts
+import { FlutterAbility, FlutterEngine } from '@ohos/flutter_ohos';
+import { GeneratedPluginRegistrant } from '@ohos/flutter_module';
+
+export default class EntryAbility extends FlutterAbility {
+  configureFlutterEngine(flutterEngine: FlutterEngine) {
+    super.configureFlutterEngine(flutterEngine)
+    GeneratedPluginRegistrant.registerWith(flutterEngine);
+  }
+}
+```
+
 `EntryAbility` 继承自 `FlutterAbility`，而 `FlutterAbility` 继承自 `UIAbility`, 它在 `UIAbility` 上增加了以下功能：
 
 
@@ -124,9 +138,11 @@ struct FlutterContainerPage {
   @LocalStorageLink('viewId') viewId: string = "";
 
   build() {
-    FlutterPage({ viewId: this.viewId })
+    Column() {
+      FlutterPage({ viewId: this.viewId })
+    }
   }
-}}
+}
 ```
 
 FlutterPage 是 OpenHarmony Flutter SDK 提供的一个组件，用于在 ArkUI中渲染 Flutter 页面。其原理是使用了 ArkUI 中的 XComponent 来自定义渲染内容。
