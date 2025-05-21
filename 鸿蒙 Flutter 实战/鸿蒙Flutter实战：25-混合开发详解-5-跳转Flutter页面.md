@@ -33,7 +33,9 @@ struct Index {
       Blank().height(80)
 
       Button('跳转Flutter').onClick(() => {
-        PlatformCall.goToFlutterPage('order/index')
+        router.pushUrl({
+          url: 'pages/FlutterContainerPage'
+        })
       })
     }.justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)

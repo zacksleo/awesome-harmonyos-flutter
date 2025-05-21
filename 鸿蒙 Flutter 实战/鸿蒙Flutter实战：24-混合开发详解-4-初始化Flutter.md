@@ -123,23 +123,41 @@ export default class EntryAbility extends FlutterAbility {
 
 ## 添加 FlutterPage
 
-在 `entry/src/main/etc/pages` 目录下添加一个鸿蒙页面, 例如名称为 FlutterContainerPage，用于承载 FlutterPage, 页面内容如下：
+在 `entry/src/main/etc/pages` 目录下添加一个鸿蒙页面, 例如名称为 `FlutterContainerPage`，用于承载 FlutterPage,
+
+鼠标右键点击 `ohos/entry/src/main/ets/pages` 目录，依次选择 New->Page->Empty Page 修改 PageName 为 `FlutterContainerPage`, 点击 Finish,  随后修改页面内容如下：
 
 ```ts
-import { common } from '@kit.AbilityKit';
-import { FlutterPage } from '@ohos/flutter_ohos';
+import { FlutterEntry, FlutterPage, FlutterView } from '@ohos/flutter_ohos'
 
-let storage = LocalStorage.getShared()
-
-@Entry(storage)
+@Entry
 @Component
-struct FlutterContainerPage {
-  private context = getContext(this) as common.UIAbilityContext
-  @LocalStorageLink('viewId') viewId: string = "";
+struct Index {
+
+  private flutterEntry?: FlutterEntry;
+  private flutterView?: FlutterView;
+
+  aboutToAppear() {
+    this.flutterEntry = new FlutterEntry(getContext(this));
+    this.flutterEntry.aboutToAppear();
+    this.flutterView = this.flutterEntry.getFlutterView();
+  }
+
+  aboutToDisappear() {
+    this.flutterEntry?.aboutToDisappear();
+  }
+
+  onPageShow() {
+    this.flutterEntry?.onPageShow();
+  }
+
+  onPageHide() {
+    this.flutterEntry?.onPageHide();
+  }
 
   build() {
-    Column() {
-      FlutterPage({ viewId: this.viewId })
+    RelativeContainer() {
+      FlutterPage({ viewId: this.flutterView?.getId()})
     }
   }
 }
