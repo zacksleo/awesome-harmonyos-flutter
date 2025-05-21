@@ -55,8 +55,6 @@ struct Index {
 FlutterPage 是 OpenHarmony Flutter SDK 提供的一个组件，用于在 ArkUI中渲染 Flutter 页面。其原理是使用了 ArkUI 中的 XComponent 来自定义渲染内容。
 
 
-在[混合开发详解-4-初始化Flutter](./鸿蒙Flutter实战：24-混合开发详解-4-初始化Flutter.md)中，我们创建了一个名为 FlutterContainerPage 的页面，
-
 ## 修改原生页面
 
 ```ts
@@ -80,5 +78,14 @@ struct Index {
 }
 ```
 
+我们在原生页面处添加一个按钮，点击按钮时跳转至 Flutter 页面
+
 ## 实现动态跳转
 
+经过上面的步骤，我们已经成功跳转至 Flutter 页面，但是跳转的页面是固定的，如何实现动态跳转呢？
+
+我们可以在打开新页面之前，向 Flutter 发送事件，当 Flutter 收到事件时，提前切换页面，然后我们打开这个承载Flutter的原生页面。
+
+1. 创建一个 Flutter 跳转事件，并添加到 EventChannel 中
+
+```ts
