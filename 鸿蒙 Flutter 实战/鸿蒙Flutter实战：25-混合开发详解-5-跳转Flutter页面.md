@@ -18,24 +18,12 @@ import { router } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
-
   build() {
     Column() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
-
+      Text('Hello World').fontSize('50fp').fontWeight(FontWeight.Bold)
       Blank().height(80)
-
       Button('跳转Flutter').onClick(() => {
-        router.pushUrl({
-          url: 'pages/FlutterContainerPage'
-        })
+        router.pushUrl({ url: 'pages/FlutterContainerPage'})
       })
     }.justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
