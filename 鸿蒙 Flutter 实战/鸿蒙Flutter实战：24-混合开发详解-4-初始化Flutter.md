@@ -121,50 +121,9 @@ export default class EntryAbility extends FlutterAbility {
   - 支持热重载配置同步（onConfigurationUpdate)
 
 
-## 添加 FlutterPage
+## 总结
 
-在 `entry/src/main/etc/pages` 目录下添加一个鸿蒙页面, 例如名称为 `FlutterContainerPage`，用于承载 FlutterPage,
-
-鼠标右键点击 `ohos/entry/src/main/ets/pages` 目录，依次选择 New->Page->Empty Page 修改 PageName 为 `FlutterContainerPage`, 点击 Finish,  随后修改页面内容如下：
-
-```ts
-import { FlutterEntry, FlutterPage, FlutterView } from '@ohos/flutter_ohos'
-
-@Entry
-@Component
-struct Index {
-
-  private flutterEntry?: FlutterEntry;
-  private flutterView?: FlutterView;
-
-  aboutToAppear() {
-    this.flutterEntry = new FlutterEntry(getContext(this));
-    this.flutterEntry.aboutToAppear();
-    this.flutterView = this.flutterEntry.getFlutterView();
-  }
-
-  aboutToDisappear() {
-    this.flutterEntry?.aboutToDisappear();
-  }
-
-  onPageShow() {
-    this.flutterEntry?.onPageShow();
-  }
-
-  onPageHide() {
-    this.flutterEntry?.onPageHide();
-  }
-
-  build() {
-    RelativeContainer() {
-      FlutterPage({ viewId: this.flutterView?.getId()})
-    }
-  }
-}
-```
-
-FlutterPage 是 OpenHarmony Flutter SDK 提供的一个组件，用于在 ArkUI中渲染 Flutter 页面。其原理是使用了 ArkUI 中的 XComponent 来自定义渲染内容。
-
+本节主要介绍了如何初始化 Flutter 引擎，以及 初始化 Flutter Module。下一节我们将介绍如何由原生跳转至 Flutter 并展示界面。
 
 ## 参考资料
 
