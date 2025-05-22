@@ -78,4 +78,14 @@ struct Index {
 }
 ```
 
-我们在原生页面处添加一个按钮，点击按钮时跳转至 Flutter 页面
+我们在原生页面处添加一个按钮，点击按钮时跳转至 Flutter 页面。
+
+## 接下来
+
+在上面的例子中，每次打开的 Flutter 页面是固定的，接下来我们将探讨如何实现动态跳转 Flutter 页面。
+
+## 参考资料
+
+- [如何使用混合开发添加跳转 FlutterEntry](https://gitcode.com/openharmony-tpc/flutter_samples/blob/br_3.7.12-ohos-1.1.0/ohos/docs/04_development/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%E6%B7%BB%E5%8A%A0%E8%B7%B3%E8%BD%AC%20FlutterEntry.md)
+- [flutter_page_sample2](https://gitcode.com/openharmony-tpc/flutter_samples/tree/br_3.7.12-ohos-1.1.0/ohos/flutter_page_sample2)
+- [flutter_page_sample1](https://gitcode.com/openharmony-tpc/flutter_samples/tree/br_3.7.12-ohos-1.1.0/ohos/flutter_page_sample1)

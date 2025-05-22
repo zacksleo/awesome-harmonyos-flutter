@@ -92,8 +92,6 @@ Consuming the Module
 
 > 注意，生成的  flutter_module.har 是默认名称，与项目名无关。如何想要修改生成的名称，可在 my_flutter_module/.ohos/flutter_module/oh-package.json5  文件中修改包名。
 
-![alt text](image-20.png)
-
 ## 引入 Har 包到 ohos 项目中
 
 接下来，我们将生成的 har 包复制到宿主项目 ohos 中，然后回到 ohos 项目工程，将上面生成的 Har 包添依赖配置中。
