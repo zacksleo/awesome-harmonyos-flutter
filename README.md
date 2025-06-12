@@ -22,6 +22,12 @@
 - [鸿蒙Flutter实战：18-组合而非替换，现有插件快速鸿蒙化](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：18-组合而非替换，现有插件快速鸿蒙化.md)
 - [鸿蒙Flutter实战：19-Flutter集成高德地图，跳转页面方式](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：19-Flutter集成高德地图，跳转页面方式.md)
 - [鸿蒙Flutter实战：20-Flutter集成高德地图，同层渲染](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：20.%20Flutter集成高德地图，同层渲染.md)
+- [鸿蒙Flutter实战：21-混合开发详解-1-概述](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：21-混合开发详解-1-概述.md)
+- [鸿蒙Flutter实战：22-混合开发详解-2-Har包模式引入](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：22-混合开发详解-2-Har包模式引入.md)
+- [鸿蒙Flutter实战：23-混合开发详解-3-源码模式引入](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：23-混合开发详解-3-源码模式引入.md)
+- [鸿蒙Flutter实战：24-混合开发详解-4-初始化Flutter](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：24-混合开发详解-4-初始化Flutter.md)
+- [鸿蒙Flutter实战：25-混合开发详解-5-跳转Flutter页面](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：25-混合开发详解-5-跳转Flutter页面.md)
+
 
 ## 《鸿蒙原生开发手记》
 
