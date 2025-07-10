@@ -26,7 +26,7 @@
 mkdir -p ~/.fvm/versions
 
 # 克隆 Flutter SDK
-git clone https://gitee.com/harmonycommando_flutter/flutter.git custom_3.22.0
+git clone -b 3.22.0-ohos https://gitcode.com/openharmony-tpc/flutter_flutter custom_3.22.0
 ```
 ### 配置环境变量
 

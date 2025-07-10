@@ -103,7 +103,7 @@ Vscode中右下角应当出现模拟器的设备，行如 `127.0.0.1:5555(ohos-a
 3.2 尝试重启 VsCode 的命令行，或者重启整个 VsCode，待重新打开 VSCode 命令行以后，`flutter --version` 出现这样的输出
 
 ```bash
-Flutter 3.22.0-ohos • channel oh-3.22.0 • https://gitee.com/harmonycommando_flutter/flutter.git
+Flutter 3.22.0-ohos • channel oh-3.22.0 • https://gitcode.com/openharmony-tpc/flutter_flutter.git
 Framework • revision 85630b0330 (13 天前) • 2024-10-26 02:39:47 +0000
 Engine • revision f6344b75dc
 Tools • Dart 3.4.0 • DevTools 2.34.1

@@ -4,12 +4,12 @@
 
 参考[鸿蒙Flutter实战：01-搭建开发环境]文章的说明，首先安装 Flutter SDK 3.22.0。
 
-目前鸿蒙化Flutter SDK 3.22 还未正式发布，现在可以使用 `https://gitee.com/harmonycommando_flutter/flutter` 进行前期测试验证。
+目前鸿蒙化Flutter SDK 3.22 还未正式发布，现在可以使用 `https://gitcode.com/openharmony-tpc/flutter_flutter` 进行前期测试验证。
 
 使用 FVM 进入 目录 `~/fvm/versions/`, 克隆以上仓库。
 
 ```bash
-git clone https://gitee.com/harmonycommando_flutter/flutter.git custom_3.22.0
+git clone -b 3.22.0-ohos https://gitcode.com/openharmony-tpc/flutter_flutter.git custom_3.22.0
 ```
 
 接下来使用 `fvm list` 命令查看 SDK版本 列表。
@@ -122,4 +122,4 @@ flutter create --platforms ohos .
 
 - [FVM](https://fvm.app/)
 - [鸿蒙Flutter实战：01-搭建开发环境](./鸿蒙Flutter实战：01-搭建开发环境.md)
-- [鸿蒙 Flutter 3.22.0](https://gitee.com/harmonycommando_flutter/flutter)
+- [鸿蒙 Flutter 3.22.0](https://gitcode.com/openharmony-tpc/flutter_flutter)
