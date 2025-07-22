@@ -49,6 +49,23 @@ C:\Program Files\Huawei\DevEco Studio\tools\hvigor\bin
 C:\Program Files\Huawei\DevEco Studio\tools\node
 
 C:\Program Files\Huawei\DevEco Studio\jbr\bin
+
+C:\Program Files\Git\cmd
+
+C:\Program Files\Git\bin
+
+C:\Windows\System32
+```
+
+> 注意，安装好 Git Bash 后，环境变量中需要添加 `C:\Program Files\Git\cmd` 和 `C:\Program Files\Git\bin`，同时 C:\Windows\System32 也需要添加到环境变量中，否则会导致无法正常运行。
+
+
+如果提示：No Hmos SDK found. Try setting the HOS_SDK_HOME environment variable
+
+使用以下命令配置，目录是 OpenHarmony SDK 的安装目录（在 Deveco/Settings/OpenHarmony Sdk/Location 中找到）
+
+```bash
+flutter config --ohos-sdk=C:\Users\zacksleo\AppData\Local\OpenHarmony\Sdk
 ```
 
 ## 管理多个 Flutter 版本
