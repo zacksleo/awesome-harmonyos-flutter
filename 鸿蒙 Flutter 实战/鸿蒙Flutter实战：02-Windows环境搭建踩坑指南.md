@@ -82,3 +82,17 @@ ohpm ERROR: Install failed, detail: Error: Fetch local file package error, /.../
 每个鸿蒙Flutter项目，用DevEco打开ohos工程后，默认显示的工程名称为 `ohos`，如果想自定义显示的工程名称，可以参考以下步骤：
 
 在 ohos/.idea 目录下，新建一个 `.name` 文件，写入项目名称即可。
+
+### 5.Harmonvos Sdk not found
+
+```
+Harmonvos Sdk not found:please do that, first: download from https://developer .harmonyos.com/cn/develop/deveco-studio#download_clisecond: follow this document:https://developer .harmonyos, com/cn/docs/documentation/doc-guides-V3/ide-command-line-ohsdkmgr-0000001545647965-V3to install OpenHarmony sdk with ohsdkmgr;If the Ohos SDk has been installed to a custom location, please use'flutter config -ohos sdk'to update to that location.
+```
+
+解决方法：
+
+根据提示配置 Openharmony sdk 的位置，这个可以打开 Deveco Studio 的设置Settings，在 OpenHarmony Sdk 的 Location 处找到。
+
+```bash
+flutter config --ohos-sdk=C:\Users\zacksleo\AppData\Local\OpenHarmony\Sdk
+```
