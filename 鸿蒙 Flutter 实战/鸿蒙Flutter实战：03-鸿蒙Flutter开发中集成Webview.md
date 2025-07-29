@@ -4,7 +4,7 @@
 
 ### 使用第三方库
 
-如 使用`flutter_inappwebview`插件，在 pubspec.lock 文件中配置：
+如 使用`flutter_inappwebview`插件，在 pubspec.yaml 文件中配置：
 
 ```yaml
   flutter_inappwebview:
