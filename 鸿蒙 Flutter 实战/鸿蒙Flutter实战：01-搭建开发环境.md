@@ -115,7 +115,7 @@ git config --global --add safe.directory '*'
 
 请扫码加小助手进群：
 备注：鸿蒙Flutter
-wx：zacksleo
+wx：imshaohu
 
 ![alt text](image.png)
 
