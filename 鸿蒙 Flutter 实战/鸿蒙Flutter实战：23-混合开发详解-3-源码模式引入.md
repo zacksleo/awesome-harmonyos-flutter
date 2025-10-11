@@ -123,6 +123,10 @@ installing hap. bundleName: com.shaohushuo.ohos_app
 
 经过一段等待之后，我们的 App 就运行起来了，应用展示的是一个原生页面，Flutter 引擎及 Flutter 页面并没有加载，我们将在接下来的章节中，介绍这些实现。
 
+## 获取示例源码
+
+本示例源码仓库 [ohos_flutter_module_demo](https://gitee.com/zacks/ohos_flutter_module_demo)
+
 
 ## 参考资料
 
