@@ -17,6 +17,9 @@ mkdir ohos_flutter_module_demo
 首先创建一个 Flutter 模块，我们选择与 ohos_app 项目同级目录
 
 ```bash
+# 进入工作目录
+cd ohos_flutter_module_demo
+
 flutter create --template=module my_flutter_module
 ```
 
@@ -65,7 +68,7 @@ DevEco Studio 打开 my_flutter_module/.ohos 工程后配置调试签名(File ->
 
 ### .ohos软连接至主项目
 
-由于[开源鸿蒙官方文档](https://gitcode.com/openharmony-sig/flutter_samples/blob/br_3.7.12-ohos-1.1.0/ohos/docs/04_development/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%20module.md)中给出的方案并不理想，这里我们使用软连接的方案，来实现基于源码的联动开发。
+由于[开源鸿蒙官方文档](https://gitcode.com/openharmony-tpc/flutter_samples/blob/master/ohos/docs/04_development/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%20module.md)中给出的方案并不理想，这里我们使用软连接的方案，来实现基于源码的联动开发。
 
 正常情况下，my_flutter_module 创建成功后，会包含一个 .ohos 目录，这个目录是一个鸿蒙工程（里面包含 flutter_module 模块），它可以做为 Flutter 的宿主运行。但是这个宿主工程，并不是我们期望的 ohos_app, 两个工程没有任何关联，所以也无法联动开发。
 
@@ -86,7 +89,31 @@ ln -s ../ohos_app .ohos
 通过以上操作，我们将 .ohos 目录以软连接的方式，替换成了 ohos_app 鸿蒙工程，这样一来，当我们运行 Flutter 代码时，就会把 ohos_app 做为宿主，这样就实现了联动源码开发，也支持 hot reload （热重载）。
 
 
-### 更新项目
+### 配置项目
+
+
+编辑 `ohos_app/build-profile.json5` 文件中的 modules 配置， 添加 flutter_module 模块：
+
+```json
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "flutter_module",
+      "srcPath": "./flutter_module"
+    }
+  ]
+```
 
 经过上操作后，我们运行 `flutter run` , 让 Flutter 来自动更新项目配置
 
@@ -95,17 +122,7 @@ ln -s ../ohos_app .ohos
 flutter run
 ```
 
-查看 `ohos_app/build-profile.json5` 文件， 可以看到命令会自动添加模块配置：
 
-```diff
-  "modules": [
-    ...
-+    {
-+      "name": "flutter_module",
-+      "srcPath": "./flutter_module"
-+    }
-  ]
-```
 
 同时查看 ohos_app/har 目录，可以看到自动生成了 flutter.har 文件。
 

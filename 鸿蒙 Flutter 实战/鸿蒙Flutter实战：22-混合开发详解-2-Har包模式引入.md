@@ -14,7 +14,10 @@ mkdir ohos_flutter_module_demo
 
 首先创建一个 Flutter 模块，我们选择与 ohos_app 项目同级目录
 
-```bash
+```bash#
+# 进入工作目录
+cd ohos_flutter_module_demo
+
 flutter create --template=module my_flutter_module
 ```
 

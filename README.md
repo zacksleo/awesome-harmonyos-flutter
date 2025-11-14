@@ -28,6 +28,20 @@
 - [鸿蒙Flutter实战：24-混合开发详解-4-初始化Flutter](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：24-混合开发详解-4-初始化Flutter.md)
 - [鸿蒙Flutter实战：25-混合开发详解-5-跳转Flutter页面](./鸿蒙%20Flutter%20实战/鸿蒙Flutter实战：25-混合开发详解-5-跳转Flutter页面.md)
 
+## 《鸿蒙 Flutter 三方库适配指南》
+
+- [鸿蒙Flutter三方库适配指南：01.背景介绍](./鸿蒙Flutter三方库适配指南/01.背景介绍.md)
+- [鸿蒙Flutter三方库适配指南：02.Flutter相关知识基础](./鸿蒙Flutter三方库适配指南/02.Flutter相关知识基础.md)
+- [鸿蒙Flutter三方库适配指南：03.ArkTS相关知识基础](./鸿蒙Flutter三方库适配指南/03.ArkTS相关知识基础.md)
+- [鸿蒙Flutter三方库适配指南：04.使用MacOS搭建开发环境](./鸿蒙Flutter三方库适配指南/04.使用MacOS搭建开发环境.md)
+- [鸿蒙Flutter三方库适配指南：05.使用Windows搭建开发环境](./鸿蒙Flutter三方库适配指南/05.使用Windows搭建开发环境.md)
+- [鸿蒙Flutter三方库适配指南：06.插件适配原理](./鸿蒙Flutter三方库适配指南/06.插件适配原理.md)
+- [鸿蒙Flutter三方库适配指南：07.插件开发](./鸿蒙Flutter三方库适配指南/07.插件开发.md)
+- [鸿蒙Flutter三方库适配指南：08.联合插件开发](./鸿蒙Flutter三方库适配指南/08.联合插件开发.md)
+- [鸿蒙Flutter三方库适配指南：09.版本升级适配](./鸿蒙Flutter三方库适配指南/09.版本升级适配.md)
+- [鸿蒙Flutter三方库适配指南：10.插件测试](./鸿蒙Flutter三方库适配指南/10.插件测试.md)
+- [鸿蒙Flutter三方库适配指南：11.插件发布上线及使用](./鸿蒙Flutter三方库适配指南/11.插件发布上线及使用.md)
+
 
 ## 《鸿蒙原生开发手记》
 
